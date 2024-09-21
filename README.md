@@ -117,48 +117,53 @@ To improve model robustness, the following augmentations were applied:
 
 ## Classes of Cancer
 The model classifies the following cancer types:
+---
 
-### Acute Lymphoblastic Leukemia:
-1. **All Benign**
-2. **All Early**
-3. **All Pre**
-4. **All Pro**
+# Classes of Cancer
 
-### Brain Cancer:
-1. **Brain Glioma**
-2. **Brain Meningioma**
-3. **Brain Tumor (Pituitary)**
+## 1. Acute Lymphoblastic Leukemia ↪ [Reference](https://www.kaggle.com/datasets/mehradaria/leukemia)
+- **all_benign**: Benign
+- **all_early**: Early
+- **all_pre**: Pre
+- **all_pro**: Pro
 
-### Breast Cancer:
-1. **Breast Benign**
-2. **Breast Malignant**
+## 2. Brain Cancer ↪ [Reference](https://figshare.com/articles/dataset/brain_tumor_dataset/1512427)
+- **brain_glioma**: Glioma
+- **brain_menin**: Meningioma
+- **brain_tumor**: Pituitary Tumor
 
-### Cervical Cancer:
-1. **Cervix Dyskeratotic**
-2. **Cervix Koilocytotic**
-3. **Cervix Metaplastic**
-4. **Cervix Parabasal**
-5. **Cervix Superficial-Intermediate**
+## 3. Breast Cancer ↪ [Reference](https://www.kaggle.com/datasets/anaselmasry/breast-cancer-dataset)
+- **breast_benign**: Benign
+- **breast_malignant**: Malignant
 
-### Kidney Cancer:
-1. **Kidney Normal**
-2. **Kidney Tumor**
+## 4. Cervical Cancer ↪ [Reference](https://www.kaggle.com/datasets/prahladmehandiratta/cervical-cancer-largest-dataset-sipakmed)
+- **cervix_dyk**: Dyskeratotic
+- **cervix_koc**: Koilocytotic
+- **cervix_mep**: Metaplastic
+- **cervix_pab**: Parabasal
+- **cervix_sfi**: Superficial-Intermediate
 
-### Lung and Colon Cancer:
-1. **Colon Adenocarcinoma**
-2. **Colon Benign Tissue**
-3. **Lung Adenocarcinoma**
-4. **Lung Benign Tissue**
-5. **Lung Squamous Cell Carcinoma**
+## 5. Kidney Cancer ↪ [Reference](https://www.kaggle.com/datasets/nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone)
+- **kidney_normal**: Normal
+- **kidney_tumor**: Tumor
 
-### Lymphoma:
-1. **Chronic Lymphocytic Leukemia**
-2. **Follicular Lymphoma**
-3. **Mantle Cell Lymphoma**
+## 6. Lung and Colon Cancer ↪ [Reference](https://www.kaggle.com/datasets/biplobdey/lung-and-colon-cancer)
+- **colon_aca**: Colon Adenocarcinoma
+- **colon_bnt**: Colon Benign Tissue
+- **lung_aca**: Lung Adenocarcinoma
+- **lung_bnt**: Lung Benign Tissue
+- **lung_scc**: Lung Squamous Cell Carcinoma
 
-### Oral Cancer:
-1. **Oral Normal**
-2. **Oral Squamous Cell Carcinoma**
+## 7. Lymphoma ↪ [Reference](https://www.kaggle.com/datasets/andrewmvd/malignant-lymphoma-classification)
+- **lymph_cll**: Chronic Lymphocytic Leukemia
+- **lymph_fl**: Follicular Lymphoma
+- **lymph_mcl**: Mantle Cell Lymphoma
+
+## 8. Oral Cancer ↪ [Reference](https://www.kaggle.com/datasets/ashenafifasilkebede/dataset)
+- **oral_normal**: Normal
+- **oral_scc**: Oral Squamous Cell Carcinoma
+
+---
 
 ## Contributing
 We welcome contributions! If you'd like to improve the model or the web interface:
