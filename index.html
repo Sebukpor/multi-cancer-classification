@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Cancer Classification - DAS medhub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #008000; /* Green for DAS */
+            display: inline;
+        }
+
+        h1 span {
+            color: #FFA500; /* Orange for medhub */
+        }
+
+        #image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        #uploaded-image {
+            max-width: 80%;
+            max-height: 300px;
+            display: none;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        #predict-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #predict-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>DAS <span>medhub</span></h1>
+    <h2>Multi-Cancer Classification</h2>
+    <h2>Team Pinnacle Pioneers</h2>
+
+    <input type="file" id="image-upload" accept="image/*">
+    <button id="predict-button" onclick="predict()">Predict</button>
+
+    <div id="image-container">
+        <img id="uploaded-image" src="#" alt="Uploaded Image">
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        let model;
+
+        // Load the TensorFlow.js model from your hosted path
+        async function loadModel() {
+            model = await tf.loadGraphModel('model/model.json'); // Replace with your model path
+            console.log('Model loaded');
+        }
+
+        loadModel(); // Load the model when the page loads
+
+        const imageUpload = document.getElementById('image-upload');
+        const uploadedImage = document.getElementById('uploaded-image');
+        const predictButton = document.getElementById('predict-button');
+        const resultDiv = document.getElementById('result');
+
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                uploadedImage.src = e.target.result;
+                uploadedImage.style.display = 'block';
+                predictButton.style.display = 'inline-block'; // Show the predict button
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        async function predict() {
+            predictButton.disabled = true; // Disable the button during prediction
+            resultDiv.innerText = 'Predicting...';
+
+            // Preprocess the image (resize, normalize, expand dimensions)
+            const tensorImg = tf.browser.fromPixels(uploadedImage)
+                .resizeBilinear([224, 224])  // Resize image to match model input shape
+                .toFloat()
+                .div(tf.scalar(255))  // Normalize image
+                .expandDims();  // Add batch dimension
+
+            // Make the prediction
+            const logits = model.predict(tensorImg);  // Predict the raw logits
+            const predictions = logits.softmax().dataSync();  // Apply softmax to get probabilities
+
+            const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
+
+            // Ensure that the class names match your model's class labels
+            const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor', 
+                'breast_benign', 'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab', 
+                'cervix_sfi', 'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt', 
+                'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc'];
+
+            // Display the result
+            const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
+            resultDiv.innerText = result;
+            predictButton.disabled = false; // Enable the button again
+        }
+    </script>
+</body>
+</html>
