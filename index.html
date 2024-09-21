@@ -75,13 +75,17 @@
 
     <script>
         let model;
-
+        
         // Load the TensorFlow.js model from your hosted path
         async function loadModel() {
-            model = await tf.loadGraphModel('model/model.json'); // Replace with your model path
+            const weightFiles = [];
+            for (let i = 1; i <= 23; i++) {
+                weightFiles.push(`model/group1-shard${i}of23.bin`);
+            }
+            model = await tf.loadGraphModel('model/model.json', { weights: weightFiles });
             console.log('Model loaded');
         }
-
+        
         loadModel(); // Load the model when the page loads
 
         const imageUpload = document.getElementById('image-upload');
