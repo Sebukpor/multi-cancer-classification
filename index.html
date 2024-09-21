@@ -91,9 +91,27 @@
         }
         
         loadModel(); // Load the model when the page loads
-        
-        // Rest of the code remains the same...
-        
+
+        const imageUpload = document.getElementById('image-upload');
+        const uploadedImage = document.getElementById('uploaded-image');
+        const predictButton = document.getElementById('predict-button');
+        const resultDiv = document.getElementById('result');
+
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                uploadedImage.src = e.target.result; // Set the image source to the file content
+                uploadedImage.style.display = 'block'; // Show the image
+                predictButton.style.display = 'inline-block'; // Show the predict button
+            };
+
+            if (file) {
+                reader.readAsDataURL(file); // Read the image file as a data URL
+            }
+        });
+
         async function predict() {
             try {
                 predictButton.disabled = true; // Disable the button during prediction
@@ -111,7 +129,7 @@
                 const predictions = logits.softmax().dataSync();
                 
                 // Get the top 3 predictions
-                const sortedPredictions = predictions.sort((a, b) => b - a);
+                const sortedPredictions = predictions.slice().sort((a, b) => b - a);
                 const top3Predictions = sortedPredictions.slice(0, 3);
                 
                 // Display the result
