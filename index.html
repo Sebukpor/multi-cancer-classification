@@ -116,7 +116,10 @@
                 
                 // Display the result
                 const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
-                const classNames = [...]; // Ensure class names match your model's class labels
+                const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor', 'breast_benign',
+                                    'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab', 'cervix_sfi',
+                                    'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt', 'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl',
+                                    'oral_normal', 'oral_scc']; // Ensure class names match your model's class labels
                 const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
                 resultDiv.innerText = result;
                 
