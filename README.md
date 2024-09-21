@@ -6,7 +6,7 @@ The **Multi-Cancer Classification Tool** is a machine learning-powered web appli
 The application uses a TensorFlow.js model hosted on GitHub and can be accessed via a simple web interface. Users can upload medical images, and the model will predict the cancer type based on its training.
 
 ### Developed By:
-- **DAS** (Diagnostic Assistance System) - Medhub
+- **DAS**- Medhub (healthtech start-up)
 - **Team Pinnacle Pioneers**
 
 ## Features
@@ -23,7 +23,7 @@ The application uses a TensorFlow.js model hosted on GitHub and can be accessed 
 - **Fast and Efficient:** The model processes medical images quickly, providing predictions within seconds.
 
 ## Model Architecture
-The model is based on a convolutional neural network (CNN) architecture, specifically fine-tuned using the **Xception** model. This model has been trained on a dataset of multi-cancer images to detect different types of cancers with high accuracy.
+The model is based on a convolutional neural network (CNN) architecture, specifically fine-tuned using the **Resnet50** model. This model has been trained on a dataset of multi-cancer images to detect different types of cancers with high accuracy.
 
 Key Components:
 - **Convolutional Layers:** Extracts features from input images.
@@ -42,7 +42,7 @@ Key Components:
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-github-username/repository-name.git
+    git clone https://github.com/sebukpor/multi-cancer-classification.git
     cd repository-name
     ```
 
@@ -57,7 +57,7 @@ Key Components:
 To host the tool on GitHub Pages:
 1. Push the repository to your GitHub account.
 2. Go to the repository settings and enable GitHub Pages in the "Pages" section.
-3. The tool will be hosted at: `https://your-github-username.github.io/repository-name`.
+3. The tool will be hosted at: `https://sebukpor.github.io/multi-cancer-classification`.
 
 ## Usage Instructions
 1. Open the tool in a browser (hosted online or locally).
@@ -98,7 +98,7 @@ To improve model robustness, the following augmentations were applied:
 - **Horizontal Flipping**
 
 ## Model Training
-- **Architecture:** Xception-based CNN.
+- **Architecture:** Resnet50-based CNN.
 - **Optimizer:** Adam optimizer with a learning rate of `1e-4`.
 - **Loss Function:** Categorical Cross-Entropy.
 - **Batch Size:** 32
@@ -117,7 +117,51 @@ We welcome contributions! If you'd like to improve the model or the web interfac
 3. Commit your changes.
 4. Open a pull request.
 
-## License
+#Classes of Cancer
+#Acute Lymphoblastic Leukemia
+↪ 🔗 Ref.
+1. all_benign  Benign
+2. all_early   Early
+3. all_pre  Pre
+4. all_pro    Pro
+#Brain Cancer
+↪ 🔗 Ref.
+1. brain_glioma  Glioma
+2. brain_menin Meningioma
+3. brain_tumor Pituitary Tumor
+#Breast Cancer
+↪ 🔗 Ref.
+1. breast_benign Benign
+2. breast_malignant  Malignant
+#Cervical Cancer
+↪ 🔗 Ref.
+1. cervix_dyk Dyskeratotic
+2. cervix_koc Koilocytotic
+3. cervix_mep    Metaplastic
+4. cervix_pab Parabasal
+5. cervix_sfi    Superficial-Intermediate
+#Kidney Cancer
+↪ 🔗 Ref.
+1. kidney_normal   Normal
+2. kidney_tumor Tumor
+#Lung and Colon Cancer
+↪ 🔗 Ref.
+1. colon_aca    Colon Adenocarcinoma
+2. colon_bnt  Colon Benign Tissue
+3. lung_aca   Lung Adenocarcinoma
+4. lung_bnt   Lung Benign Tissue
+5. lung_scc  Lung Squamous Cell Carcinoma
+#Lymphoma
+↪ 🔗 Ref.
+1. lymph_cll    Chronic Lymphocytic Leukemia
+2. lymph_fl    Follicular Lymphoma
+3. lymph_mcl Mantle Cell Lymphoma
+#Oral Cancer
+↪ 🔗 Ref.
+1. oral_normal Normal
+2. oral_scc    Oral Squamous Cell Carcinom
+
+   ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
@@ -126,48 +170,3 @@ For more information, reach out to us at:
 
 ### Credits
 Developed by **DAS medhub** and **Team Pinnacle Pioneers**.
-
-
-#Classes of Cancer
-Acute Lymphoblastic Leukemia
-↪ 🔗 Ref.
-1. all_benign  Benign
-2. all_early   Early
-3. all_pre  Pre
-4. all_pro    Pro
-Brain Cancer
-↪ 🔗 Ref.
-1. brain_glioma  Glioma
-2. brain_menin Meningioma
-3. brain_tumor Pituitary Tumor
-Breast Cancer
-↪ 🔗 Ref.
-1. breast_benign Benign
-2. breast_malignant  Malignant
-Cervical Cancer
-↪ 🔗 Ref.
-1. cervix_dyk Dyskeratotic
-2. cervix_koc Koilocytotic
-3. cervix_mep    Metaplastic
-4. cervix_pab Parabasal
-5. cervix_sfi    Superficial-Intermediate
-Kidney Cancer
-↪ 🔗 Ref.
-1. kidney_normal   Normal
-2. kidney_tumor Tumor
-Lung and Colon Cancer
-↪ 🔗 Ref.
-1. colon_aca    Colon Adenocarcinoma
-2. colon_bnt  Colon Benign Tissue
-3. lung_aca   Lung Adenocarcinoma
-4. lung_bnt   Lung Benign Tissue
-5. lung_scc  Lung Squamous Cell Carcinoma
-Lymphoma
-↪ 🔗 Ref.
-1. lymph_cll    Chronic Lymphocytic Leukemia
-2. lymph_fl    Follicular Lymphoma
-3. lymph_mcl Mantle Cell Lymphoma
-Oral Cancer
-↪ 🔗 Ref.
-1. oral_normal Normal
-2. oral_scc    Oral Squamous Cell Carcinom
