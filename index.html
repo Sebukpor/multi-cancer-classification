@@ -76,6 +76,12 @@
     <script>
         let model;
 
+        // Force CPU backend to avoid WebGL issues
+        tf.setBackend('cpu').then(() => {
+            console.log('Using CPU backend');
+            loadModel();  // Load the model after setting the backend
+        });
+
         // Load the TensorFlow.js model from your hosted path
         async function loadModel() {
             try {
@@ -85,8 +91,6 @@
                 console.error('Error loading model:', error);
             }
         }
-
-        loadModel(); // Load the model when the page loads
 
         const imageUpload = document.getElementById('image-upload');
         const uploadedImage = document.getElementById('uploaded-image');
@@ -98,42 +102,43 @@
             const reader = new FileReader();
 
             reader.onload = function(e) {
-                uploadedImage.src = e.target.result; // Set the image source to the file content
-                uploadedImage.style.display = 'block'; // Show the image
-                predictButton.style.display = 'inline-block'; // Show the predict button
+                uploadedImage.src = e.target.result;  // Set the image source to the file content
+                uploadedImage.style.display = 'block';  // Show the image
+                predictButton.style.display = 'inline-block';  // Show the predict button
             };
 
             if (file) {
-                reader.readAsDataURL(file); // Read the image file as a data URL
+                reader.readAsDataURL(file);  // Read the image file as a data URL
             }
         });
 
         async function predict() {
             try {
-                predictButton.disabled = true; // Disable the button during prediction
+                predictButton.disabled = true;  // Disable the button during prediction
                 resultDiv.innerText = 'Predicting...';
 
                 // Preprocess the image (resize, normalize, expand dimensions)
                 const tensorImg = tf.browser.fromPixels(uploadedImage)
-                    .resizeBilinear([224, 224]) // Resize image to match model input shape
+                    .resizeBilinear([224, 224])  // Resize image to match model input shape
                     .toFloat()
-                    .div(tf.scalar(255)) // Normalize image to [0, 1]
-                    .expandDims(); // Add batch dimension
+                    .div(tf.scalar(255))  // Normalize image to [0, 1]
+                    .expandDims();  // Add batch dimension
                 
-                console.log(tensorImg.shape); // Debug: Check tensor shape
+                console.log('Input Tensor Shape:', tensorImg.shape);  // Debug: Check tensor shape
 
                 // Make the prediction
                 const logits = model.predict(tensorImg);
-                const predictions = logits.arraySync()[0]; // Get raw probabilities
+                const predictions = logits.arraySync()[0];  // Get raw predictions
+                console.log('Raw Predictions:', predictions);  // Log raw predictions
 
-                // Get the top prediction
-                const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
+                // Ensure that the class names match your model's class labels
                 const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor',
                     'breast_benign', 'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab',
                     'cervix_sfi', 'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt',
-                    'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc']; // Ensure class names match your model's class labels
+                    'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc'];
 
-                // Display the result
+                // Get the top prediction
+                const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
                 const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
                 resultDiv.innerText = result;
 
@@ -145,9 +150,11 @@
                     console.log(`Rank ${index + 1}: ${classNames[predictions.indexOf(prediction)]} (Confidence: ${(prediction * 100).toFixed(1)}%)`);
                 });
 
-                predictButton.disabled = false; // Enable the button again
+                predictButton.disabled = false;  // Enable the button again
             } catch (error) {
                 console.error('Error making prediction:', error);
+                resultDiv.innerText = 'Error making prediction';
+                predictButton.disabled = false;
             }
         }
     </script>
