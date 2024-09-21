@@ -106,33 +106,39 @@
             reader.readAsDataURL(file);
         });
 
-        async function predict() {
-            predictButton.disabled = true; // Disable the button during prediction
-            resultDiv.innerText = 'Predicting...';
+      async function predict() {
+    predictButton.disabled = true;
+    resultDiv.innerText = 'Predicting...';
 
-            // Preprocess the image (resize, normalize, expand dimensions)
-            const tensorImg = tf.browser.fromPixels(uploadedImage)
-                .resizeBilinear([224, 224])  // Resize image to match model input shape
-                .toFloat()
-                .div(tf.scalar(255))  // Normalize image
-                .expandDims();  // Add batch dimension
+    // Preprocess the image
+    const tensorImg = tf.browser.fromPixels(uploadedImage)
+        .resizeBilinear([224, 224])
+        .toFloat()
+        .div(tf.scalar(255))
+        .expandDims();
 
-            // Make the prediction
-            const logits = model.predict(tensorImg);  // Predict the raw logits
-            const predictions = logits.softmax().dataSync();  // Apply softmax to get probabilities
+    // Make prediction
+    const logits = model.predict(tensorImg);
+    const predictions = logits.dataSync();  // Avoid applying softmax if the model already does
 
-            const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
+    console.log(predictions);  // Debug: log the raw prediction values
 
-            // Ensure that the class names match your model's class labels
-            const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor', 
-                'breast_benign', 'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab', 
-                'cervix_sfi', 'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt', 
-                'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc'];
+    // Get the index of the highest probability
+    const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
 
-            // Display the result
-            const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
-            resultDiv.innerText = result;
-            predictButton.disabled = false; // Enable the button again
+    // Ensure that the class names match your model's class labels
+    const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor', 
+        'breast_benign', 'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab', 
+        'cervix_sfi', 'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt', 
+        'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc'];
+
+    // Display the result
+    const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
+    resultDiv.innerText = result;
+
+    predictButton.disabled = false;
+}
+
         }
     </script>
 </body>
