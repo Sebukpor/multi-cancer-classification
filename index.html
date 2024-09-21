@@ -75,21 +75,17 @@
 
     <script>
         let model;
-        
+
         // Load the TensorFlow.js model from your hosted path
         async function loadModel() {
             try {
-                const weightFiles = [];
-                for (let i = 1; i <= 23; i++) {
-                    weightFiles.push(`model/group1-shard${i}of23.bin`);
-                }
-                model = await tf.loadGraphModel('model/model.json', { weights: weightFiles });
-                console.log('Model loaded');
+                model = await tf.loadGraphModel('model/model.json');
+                console.log('Model loaded successfully');
             } catch (error) {
                 console.error('Error loading model:', error);
             }
         }
-        
+
         loadModel(); // Load the model when the page loads
 
         const imageUpload = document.getElementById('image-upload');
@@ -116,37 +112,39 @@
             try {
                 predictButton.disabled = true; // Disable the button during prediction
                 resultDiv.innerText = 'Predicting...';
-                
+
                 // Preprocess the image (resize, normalize, expand dimensions)
                 const tensorImg = tf.browser.fromPixels(uploadedImage)
                     .resizeBilinear([224, 224]) // Resize image to match model input shape
                     .toFloat()
-                    .div(tf.scalar(255)) // Normalize image
+                    .div(tf.scalar(255)) // Normalize image to [0, 1]
                     .expandDims(); // Add batch dimension
                 
+                console.log(tensorImg.shape); // Debug: Check tensor shape
+
                 // Make the prediction
                 const logits = model.predict(tensorImg);
-                const predictions = logits.softmax().dataSync();
-                
-                // Get the top 3 predictions
-                const sortedPredictions = predictions.slice().sort((a, b) => b - a);
-                const top3Predictions = sortedPredictions.slice(0, 3);
-                
-                // Display the result
+                const predictions = logits.arraySync()[0]; // Get raw probabilities
+
+                // Get the top prediction
                 const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
-                const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor', 'breast_benign',
-                                    'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab', 'cervix_sfi',
-                                    'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt', 'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl',
-                                    'oral_normal', 'oral_scc']; // Ensure class names match your model's class labels
+                const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor',
+                    'breast_benign', 'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab',
+                    'cervix_sfi', 'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt',
+                    'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc']; // Ensure class names match your model's class labels
+
+                // Display the result
                 const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
                 resultDiv.innerText = result;
-                
+
                 // Display top 3 predictions
                 console.log('Top 3 Predictions:');
+                const sortedPredictions = predictions.slice().sort((a, b) => b - a);
+                const top3Predictions = sortedPredictions.slice(0, 3);
                 top3Predictions.forEach((prediction, index) => {
                     console.log(`Rank ${index + 1}: ${classNames[predictions.indexOf(prediction)]} (Confidence: ${(prediction * 100).toFixed(1)}%)`);
                 });
-                
+
                 predictButton.disabled = false; // Enable the button again
             } catch (error) {
                 console.error('Error making prediction:', error);
