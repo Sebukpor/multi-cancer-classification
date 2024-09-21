@@ -1,16 +1,16 @@
 # Multi-Cancer Classification Tool
 
 ## Overview
-The **Multi-Cancer Classification Tool** is a machine learning-powered web application developed by **DAS medhub** in collaboration with **Team Pinnacle Pioneers**. This tool helps classify different types of cancers based on medical images, providing accurate and quick results that aid medical specialists in diagnosis.
+The **Multi-Cancer Classification Tool** is a machine learning-powered web application developed by **DAS Medhub** in collaboration with **Team Pinnacle Pioneers**. This tool helps classify different types of cancers based on medical images, providing accurate and fast results to aid medical specialists in diagnosis.
 
-The application uses a TensorFlow.js model hosted on GitHub and can be accessed via a simple web interface. Users can upload medical images, and the model will predict the cancer type based on its training.
+The application uses a **TensorFlow.js** model hosted on GitHub and can be accessed via a simple web interface. Users can upload medical images, and the model predicts the cancer type based on its training.
 
 ### Developed By:
-- **DAS**- Medhub (healthtech start-up)
+- **DAS Medhub** (healthtech start-up)
 - **Team Pinnacle Pioneers**
 
 ## Features
-- **Multi-Cancer Classification:** Supports classification for several cancer types such as:
+- **Multi-Cancer Classification:** Supports classification for multiple cancer types, such as:
   - Brain Glioma
   - Breast Malignant
   - Cervix Koc
@@ -23,13 +23,13 @@ The application uses a TensorFlow.js model hosted on GitHub and can be accessed 
 - **Fast and Efficient:** The model processes medical images quickly, providing predictions within seconds.
 
 ## Model Architecture
-The model is based on a convolutional neural network (CNN) architecture, specifically fine-tuned using the **Resnet50** model. This model has been trained on a dataset of multi-cancer images to detect different types of cancers with high accuracy.
+The model is based on the **Xception** architecture, fine-tuned for multi-cancer classification. This model has been trained on a diverse set of cancer images to detect multiple cancer types with high accuracy.
 
 Key Components:
-- **Convolutional Layers:** Extracts features from input images.
+- **Convolutional Layers:** Extract features from input images.
 - **Batch Normalization:** Stabilizes learning by normalizing layer inputs.
-- **Dropout:** Reduces overfitting by randomly ignoring some neurons during training.
-- **Dense Layers:** Provides classification decisions.
+- **Dropout:** Reduces overfitting by randomly ignoring neurons during training.
+- **Dense Layers:** Classifies images into one of 26 cancer types.
 
 ## Installation & Setup
 
@@ -43,7 +43,7 @@ Key Components:
 1. Clone this repository:
     ```bash
     git clone https://github.com/sebukpor/multi-cancer-classification.git
-    cd repository-name
+    cd multi-cancer-classification
     ```
 
 2. Open `index.html` in your preferred browser:
@@ -69,12 +69,14 @@ To host the tool on GitHub Pages:
 
 - **Input Size:** The model expects images of size **224x224** pixels.
 - **Number of Classes:** The model classifies images into the following 26 cancer types:
-  - `All Benign`
-  - `All Early`
-  - `Brain Glioma`
-  - `Breast Malignant`
-  - `Lung SCC`
-  - ... (list all cancer types)
+  - All Benign
+  - All Early
+  - Brain Glioma
+  - Breast Malignant
+  - Lung SCC
+  - Cervix Koc
+  - Oral SCC
+  - … (include all 26 cancer types)
   
 - **Model Format:** The model is in TensorFlow.js format (`model.json` and corresponding weight files).
 
@@ -89,6 +91,7 @@ The model has been trained on a custom dataset that includes labeled images for 
 - **Breast Cancer**
 - **Lung Cancer**
 - **Oral Cancer**
+- **Cervical Cancer**
 - And more...
 
 ### Data Augmentation
@@ -98,17 +101,64 @@ To improve model robustness, the following augmentations were applied:
 - **Horizontal Flipping**
 
 ## Model Training
-- **Architecture:** Resnet50-based CNN.
+- **Architecture:** Xception-based CNN.
 - **Optimizer:** Adam optimizer with a learning rate of `1e-4`.
 - **Loss Function:** Categorical Cross-Entropy.
 - **Batch Size:** 32
-- **Training Time:** 5 epochs (you can adjust based on your needs).
+- **Training Time:** 7 epochs
 
 ## Performance Metrics
-- **Accuracy:** X%
-- **Precision:** X%
-- **Recall:** X%
-- **F1-Score:** X%
+- **Test Accuracy (Top-1):** 98.69%
+- **Test Accuracy (Top-5):** 100.00%
+- **Precision (macro avg):** 0.99
+- **Recall (macro avg):** 0.99
+- **F1-Score (macro avg):** 0.99
+- **Training Accuracy:** 98.23%
+
+## Classes of Cancer
+The model classifies the following cancer types:
+
+### Acute Lymphoblastic Leukemia:
+1. **All Benign**
+2. **All Early**
+3. **All Pre**
+4. **All Pro**
+
+### Brain Cancer:
+1. **Brain Glioma**
+2. **Brain Meningioma**
+3. **Brain Tumor (Pituitary)**
+
+### Breast Cancer:
+1. **Breast Benign**
+2. **Breast Malignant**
+
+### Cervical Cancer:
+1. **Cervix Dyskeratotic**
+2. **Cervix Koilocytotic**
+3. **Cervix Metaplastic**
+4. **Cervix Parabasal**
+5. **Cervix Superficial-Intermediate**
+
+### Kidney Cancer:
+1. **Kidney Normal**
+2. **Kidney Tumor**
+
+### Lung and Colon Cancer:
+1. **Colon Adenocarcinoma**
+2. **Colon Benign Tissue**
+3. **Lung Adenocarcinoma**
+4. **Lung Benign Tissue**
+5. **Lung Squamous Cell Carcinoma**
+
+### Lymphoma:
+1. **Chronic Lymphocytic Leukemia**
+2. **Follicular Lymphoma**
+3. **Mantle Cell Lymphoma**
+
+### Oral Cancer:
+1. **Oral Normal**
+2. **Oral Squamous Cell Carcinoma**
 
 ## Contributing
 We welcome contributions! If you'd like to improve the model or the web interface:
@@ -117,56 +167,13 @@ We welcome contributions! If you'd like to improve the model or the web interfac
 3. Commit your changes.
 4. Open a pull request.
 
-#Classes of Cancer
-#Acute Lymphoblastic Leukemia
-↪ 🔗 Ref.
-1. all_benign  Benign
-2. all_early   Early
-3. all_pre  Pre
-4. all_pro    Pro
-#Brain Cancer
-↪ 🔗 Ref.
-1. brain_glioma  Glioma
-2. brain_menin Meningioma
-3. brain_tumor Pituitary Tumor
-#Breast Cancer
-↪ 🔗 Ref.
-1. breast_benign Benign
-2. breast_malignant  Malignant
-#Cervical Cancer
-↪ 🔗 Ref.
-1. cervix_dyk Dyskeratotic
-2. cervix_koc Koilocytotic
-3. cervix_mep    Metaplastic
-4. cervix_pab Parabasal
-5. cervix_sfi    Superficial-Intermediate
-#Kidney Cancer
-↪ 🔗 Ref.
-1. kidney_normal   Normal
-2. kidney_tumor Tumor
-#Lung and Colon Cancer
-↪ 🔗 Ref.
-1. colon_aca    Colon Adenocarcinoma
-2. colon_bnt  Colon Benign Tissue
-3. lung_aca   Lung Adenocarcinoma
-4. lung_bnt   Lung Benign Tissue
-5. lung_scc  Lung Squamous Cell Carcinoma
-#Lymphoma
-↪ 🔗 Ref.
-1. lymph_cll    Chronic Lymphocytic Leukemia
-2. lymph_fl    Follicular Lymphoma
-3. lymph_mcl Mantle Cell Lymphoma
-#Oral Cancer
-↪ 🔗 Ref.
-1. oral_normal Normal
-2. oral_scc    Oral Squamous Cell Carcinom
-
-   ## License
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For more information, reach out to us at:
-- **Email:** [dasmedhub@outlook.com](mailto:dasmedhub@outlook.com)
+- **Email:** [divinesebukpor@gmail.com](mailto:divinesebukpor@gmail)
 
-### Credits
-Developed by **DAS medhub** and **Team Pinnacle Pioneers**.
+
+---
+
