@@ -165,18 +165,11 @@ The model classifies the following cancer types:
 
 ---
 
-## Contributing
-We welcome contributions! If you'd like to improve the model or the web interface:
-1. Fork the repository.
-2. Create a new branch (`feature/my-feature`).
-3. Commit your changes.
-4. Open a pull request.
-
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For more information, reach out to us at:
+For more information, reach out at:
 - **Email:** [divinesebukpor@gmail.com](mailto:divinesebukpor@gmail)
 
 
