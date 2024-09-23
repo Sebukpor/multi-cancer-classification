@@ -74,100 +74,101 @@
     <div id="result"></div>
 
     <script>
-        let model;
+    let model;
 
-        // Force CPU backend to avoid WebGL issues
-        // Check if WebGL is available, otherwise fallback to CPU
-if (tf.backend().name === 'webgl') {
-    console.log('Using WebGL backend');
-} else {
-    tf.setBackend('cpu').then(() => console.log('Using CPU backend'));
-}
-
-            loadModel();  // Load the model after setting the backend
+    // Force CPU backend to avoid WebGL issues
+    // Check if WebGL is available, otherwise fallback to CPU
+    if (tf.backend().name === 'webgl') {
+        console.log('Using WebGL backend');
+        loadModel();  // Load the model immediately if using WebGL
+    } else {
+        tf.setBackend('cpu').then(() => {
+            console.log('Using CPU backend');
+            loadModel();  // Load the model after setting the backend to CPU
         });
+    }
 
-        // Load the TensorFlow.js model from your hosted path
-        async function loadModel() {
-            try {
-                model = await tf.loadGraphModel('model/model.json');
-                console.log('Model loaded successfully');
-            } catch (error) {
-                console.error('Error loading model:', error);
-            }
+    // Load the TensorFlow.js model from your hosted path
+    async function loadModel() {
+        try {
+            model = await tf.loadGraphModel('model/model.json');
+            console.log('Model loaded successfully');
+        } catch (error) {
+            console.error('Error loading model:', error);
         }
+    }
 
-        const imageUpload = document.getElementById('image-upload');
-        const uploadedImage = document.getElementById('uploaded-image');
-        const predictButton = document.getElementById('predict-button');
-        const resultDiv = document.getElementById('result');
+    const imageUpload = document.getElementById('image-upload');
+    const uploadedImage = document.getElementById('uploaded-image');
+    const predictButton = document.getElementById('predict-button');
+    const resultDiv = document.getElementById('result');
 
-        imageUpload.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            const reader = new FileReader();
+    imageUpload.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
 
-            reader.onload = function(e) {
-                uploadedImage.src = e.target.result;  // Set the image source to the file content
-                uploadedImage.style.display = 'block';  // Show the image
-                predictButton.style.display = 'inline-block';  // Show the predict button
-            };
+        reader.onload = function(e) {
+            uploadedImage.src = e.target.result;  // Set the image source to the file content
+            uploadedImage.style.display = 'block';  // Show the image
+            predictButton.style.display = 'inline-block';  // Show the predict button
+        };
 
-            if (file) {
-                reader.readAsDataURL(file);  // Read the image file as a data URL
-            }
-        });
-
-        async function predict() {
-            try {
-                predictButton.disabled = true;  // Disable the button during prediction
-                resultDiv.innerText = 'Predicting...';
-
-                // Preprocess the image (resize, normalize, expand dimensions)
-                const tensorImg = tf.browser.fromPixels(uploadedImage)
-                    .resizeBilinear([224, 224])  // Resize image to match model input shape
-                    .toFloat()
-                    .div(tf.scalar(255))  // Normalize image to [0, 1]
-                    .expandDims();  // Add batch dimension
-                
-                console.log('Input Tensor Shape:', tensorImg.shape);  // Debug: Check tensor shape
-
-                // Make the prediction
-                const logits = model.predict(tensorImg);
-                const predictions = logits.arraySync()[0];  // Get raw predictions
-                console.log('Raw Predictions:', predictions);  // Log raw predictions
-
-                // Ensure that the class names match your model's class labels
-               const classNames = ['Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early', 'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro', 
-                    'Brain Glioma', 'Brain Meningioma', 'Brain Tumor', 
-                    'Breast Benign', 'Breast Malignant', 
-                    'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic', 'Cervix Parabasal', 
-                    'Cervix Superficial Intermediate', 'Colon Adenocarcinoma', 'Colon Benign Tissue', 
-                    'Kidney Normal', 'Kidney Tumor', 
-                    'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma', 
-                    'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma', 
-                    'Oral Normal', 'Oral Squamous Cell Carcinoma'];
-
-
-                // Get the top prediction
-                const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
-                const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
-                resultDiv.innerText = result;
-
-                // Display top 3 predictions
-                console.log('Top 3 Predictions:');
-                const sortedPredictions = predictions.slice().sort((a, b) => b - a);
-                const top3Predictions = sortedPredictions.slice(0, 3);
-                top3Predictions.forEach((prediction, index) => {
-                    console.log(`Rank ${index + 1}: ${classNames[predictions.indexOf(prediction)]} (Confidence: ${(prediction * 100).toFixed(1)}%)`);
-                });
-
-                predictButton.disabled = false;  // Enable the button again
-            } catch (error) {
-                console.error('Error making prediction:', error);
-                resultDiv.innerText = 'Error making prediction';
-                predictButton.disabled = false;
-            }
+        if (file) {
+            reader.readAsDataURL(file);  // Read the image file as a data URL
         }
-    </script>
+    });
+
+    async function predict() {
+        try {
+            predictButton.disabled = true;  // Disable the button during prediction
+            resultDiv.innerText = 'Predicting...';
+
+            // Preprocess the image (resize, normalize, expand dimensions)
+            const tensorImg = tf.browser.fromPixels(uploadedImage)
+                .resizeBilinear([224, 224])  // Resize image to match model input shape
+                .toFloat()
+                .div(tf.scalar(255))  // Normalize image to [0, 1]
+                .expandDims();  // Add batch dimension
+            
+            console.log('Input Tensor Shape:', tensorImg.shape);  // Debug: Check tensor shape
+
+            // Make the prediction
+            const logits = model.predict(tensorImg);
+            const predictions = logits.arraySync()[0];  // Get raw predictions
+            console.log('Raw Predictions:', predictions);  // Log raw predictions
+
+            // Ensure that the class names match your model's class labels
+            const classNames = ['Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early', 'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro', 
+                'Brain Glioma', 'Brain Meningioma', 'Brain Tumor', 
+                'Breast Benign', 'Breast Malignant', 
+                'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic', 'Cervix Parabasal', 
+                'Cervix Superficial Intermediate', 'Colon Adenocarcinoma', 'Colon Benign Tissue', 
+                'Kidney Normal', 'Kidney Tumor', 
+                'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma', 
+                'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma', 
+                'Oral Normal', 'Oral Squamous Cell Carcinoma'];
+
+            // Get the top prediction
+            const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
+            const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
+            resultDiv.innerText = result;
+
+            // Display top 3 predictions
+            console.log('Top 3 Predictions:');
+            const sortedPredictions = predictions.slice().sort((a, b) => b - a);
+            const top3Predictions = sortedPredictions.slice(0, 3);
+            top3Predictions.forEach((prediction, index) => {
+                console.log(`Rank ${index + 1}: ${classNames[predictions.indexOf(prediction)]} (Confidence: ${(prediction * 100).toFixed(1)}%)`);
+            });
+
+            predictButton.disabled = false;  // Enable the button again
+        } catch (error) {
+            console.error('Error making prediction:', error);
+            resultDiv.innerText = 'Error making prediction';
+            predictButton.disabled = false;
+        }
+    }
+</script>
+
 </body>
 </html>
