@@ -132,10 +132,10 @@
                 console.log('Raw Predictions:', predictions);  // Log raw predictions
 
                 // Ensure that the class names match your model's class labels
-                const classNames = ['all_benign', 'all_early', 'all_pre', 'all_pro', 'brain_glioma', 'brain_menin', 'brain_tumor',
-                    'breast_benign', 'breast_malignant', 'cervix_dyk', 'cervix_koc', 'cervix_mep', 'cervix_pab',
-                    'cervix_sfi', 'colon_aca', 'colon_bnt', 'kidney_normal', 'kidney_tumor', 'lung_aca', 'lung_bnt',
-                    'lung_scc', 'lymph_cll', 'lymph_fl', 'lymph_mcl', 'oral_normal', 'oral_scc'];
+                const classNames = ['acute_lymphoblastic_leukemia_benign', 'acute_lymphoblastic_leukemia_early', 'acute_lymphoblastic_leukemia_pre', 'acute_lymphoblastic_leukemia_pro', 'brain_glioma', 'brain_meningioma', 'brain_tumor',
+                    'breast_benign', 'breast_malignant', 'cervix_dyskeratotic', 'cervix_koilocytotic', 'cervix_metaplastic', 'cervix_parabasal',
+                    'cervix_superficial_intermediate', 'colon_adenocarcinoma', 'colon_benign_tissue', 'kidney_normal', 'kidney_tumor', 'lung_adenocarcinoma', 'lung_benign_tissue',
+                    'lung_squamous_cell_carcinoma', 'chronic_lymphocytic_leukemia', 'follicular_lymphoma', 'mantle_cell_lymphoma', 'oral_normal', 'oral_squamous_cell_carcinoma'];
 
                 // Get the top prediction
                 const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
