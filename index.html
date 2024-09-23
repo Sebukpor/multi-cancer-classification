@@ -132,10 +132,16 @@
                 console.log('Raw Predictions:', predictions);  // Log raw predictions
 
                 // Ensure that the class names match your model's class labels
-                const classNames = ['acute_lymphoblastic_leukemia_benign', 'acute_lymphoblastic_leukemia_early', 'acute_lymphoblastic_leukemia_pre', 'acute_lymphoblastic_leukemia_pro', 'brain_glioma', 'brain_meningioma', 'brain_tumor',
-                    'breast_benign', 'breast_malignant', 'cervix_dyskeratotic', 'cervix_koilocytotic', 'cervix_metaplastic', 'cervix_parabasal',
-                    'cervix_superficial_intermediate', 'colon_adenocarcinoma', 'colon_benign_tissue', 'kidney_normal', 'kidney_tumor', 'lung_adenocarcinoma', 'lung_benign_tissue',
-                    'lung_squamous_cell_carcinoma', 'chronic_lymphocytic_leukemia', 'follicular_lymphoma', 'mantle_cell_lymphoma', 'oral_normal', 'oral_squamous_cell_carcinoma'];
+               const classNames = ['Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early', 'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro', 
+                    'Brain Glioma', 'Brain Meningioma', 'Brain Tumor', 
+                    'Breast Benign', 'Breast Malignant', 
+                    'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic', 'Cervix Parabasal', 
+                    'Cervix Superficial Intermediate', 'Colon Adenocarcinoma', 'Colon Benign Tissue', 
+                    'Kidney Normal', 'Kidney Tumor', 
+                    'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma', 
+                    'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma', 
+                    'Oral Normal', 'Oral Squamous Cell Carcinoma'];
+
 
                 // Get the top prediction
                 const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
