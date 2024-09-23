@@ -77,8 +77,13 @@
         let model;
 
         // Force CPU backend to avoid WebGL issues
-        tf.setBackend('cpu').then(() => {
-            console.log('Using CPU backend');
+        // Check if WebGL is available, otherwise fallback to CPU
+if (tf.backend().name === 'webgl') {
+    console.log('Using WebGL backend');
+} else {
+    tf.setBackend('cpu').then(() => console.log('Using CPU backend'));
+}
+
             loadModel();  // Load the model after setting the backend
         });
 
