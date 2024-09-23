@@ -166,7 +166,7 @@ The model classifies the following cancer types:
 ---
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project content cannot be clonned or downloaded without prior notice - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For more information, reach out at:
