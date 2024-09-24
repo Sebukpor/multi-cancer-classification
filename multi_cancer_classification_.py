@@ -556,26 +556,3 @@ def make_prediction(img_path, model):
 # Example usage: Replace with the path to your image
 img_path = '/kaggle/input/cancer/val/oral_scc/oral_scc_0005.jpg'  # Update with the actual image path
 predicted_class = make_prediction(img_path, model)
-
-export_dir = 'saved_model/Pneumonia'
-tf.saved_model.save(model, export_dir)
-
-import tensorflow as tf
-
-export_dir = 'saved_model/Pneumonia'
-model = tf.saved_model.load(export_dir)
-
-!pip install tensorflowjs --upgrade &> /dev/null
-
-!tensorflowjs_converter --input_format=tf_saved_model --output_format=tfjs_graph_model --signature_name=serving_default --saved_model_tags=serve saved_model/Pneumonia/ tfjs_model/
-
-import shutil
-
-# Define the source directory and destination zip file path
-source_dir = '/kaggle/working/tfjs_model'
-output_filename = '/kaggle/working/tfjs_model.zip'
-
-# Zip the directory
-shutil.make_archive(output_filename.replace('.zip', ''), 'zip', source_dir)
-
-print(f"Directory {source_dir} has been zipped as {output_filename}")
