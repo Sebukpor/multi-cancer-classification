@@ -57,6 +57,14 @@
             background-color: #ccc;
             cursor: not-allowed;
         }
+
+        /* Loading message */
+        #loading-message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FF0000;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +72,9 @@
     <h2>Multi-Cancer Classification</h2>
     <h2>Team Pinnacle Pioneers</h2>
 
-    <input type="file" id="image-upload" accept="image/*">
+    <div id="loading-message">Loading model, please wait...</div> <!-- Loading Message -->
+
+    <input type="file" id="image-upload" accept="image/*" disabled> <!-- Initially disabled -->
     <button id="predict-button" onclick="predict()">Predict</button>
 
     <div id="image-container">
@@ -93,8 +103,11 @@
         try {
             model = await tf.loadGraphModel('model/model.json');
             console.log('Model loaded successfully');
+            document.getElementById('loading-message').style.display = 'none'; // Hide loading message
+            document.getElementById('image-upload').disabled = false; // Enable file upload after model loads
         } catch (error) {
             console.error('Error loading model:', error);
+            document.getElementById('loading-message').innerText = 'Error loading model';
         }
     }
 
@@ -103,23 +116,22 @@
     const predictButton = document.getElementById('predict-button');
     const resultDiv = document.getElementById('result');
 
-  imageUpload.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+    imageUpload.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
 
-    resultDiv.innerText = '';  // Clear the previous prediction result
+        resultDiv.innerText = '';  // Clear the previous prediction result
 
-    reader.onload = function(e) {
-        uploadedImage.src = e.target.result;  // Set the image source to the file content
-        uploadedImage.style.display = 'block';  // Show the image
-        predictButton.style.display = 'inline-block';  // Show the predict button
-    };
+        reader.onload = function(e) {
+            uploadedImage.src = e.target.result;  // Set the image source to the file content
+            uploadedImage.style.display = 'block';  // Show the image
+            predictButton.style.display = 'inline-block';  // Show the predict button
+        };
 
-    if (file) {
-        reader.readAsDataURL(file);  // Read the image file as a data URL
-    }
-});
-
+        if (file) {
+            reader.readAsDataURL(file);  // Read the image file as a data URL
+        }
+    });
 
     async function predict() {
         try {
@@ -167,7 +179,7 @@
             predictButton.disabled = false;  // Enable the button again
         } catch (error) {
             console.error('Error making prediction:', error);
-            resultDiv.innerText = 'Error making prediction';
+            resultDiv.innerText = 'Error making prediction, refresh browser';
             predictButton.disabled = false;
         }
     }
