@@ -128,7 +128,9 @@ The model classifies the following cancer types:
 - **oral_normal**: Normal
 - **oral_scc**: Oral Squamous Cell Carcinoma
 
----## Demo video ↪ [Link](https://youtu.be/GQ7QS0NIviA?si=IRA5Ncn5bzYd0wdm)
+
+
+## Demo video ↪ [Link](https://youtu.be/GQ7QS0NIviA?si=IRA5Ncn5bzYd0wdm)
 
 ## License
 This project content cannot be clonned or downloaded without prior notice - see the [LICENSE](LICENSE) file for details.
