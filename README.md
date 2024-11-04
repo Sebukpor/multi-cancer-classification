@@ -131,7 +131,7 @@ The model classifies the following cancer types:
 
 
 ## Demo video ↪ [Link](https://youtu.be/GQ7QS0NIviA?si=IRA5Ncn5bzYd0wdm)
-## Test link ↪ [Link](Multi-Cancer Classification - DAS medhub)
+## Test link ↪ [Link]([Multi-Cancer Classification - DAS medhub](https://dasmedhubweightfiles.z13.web.core.windows.net/))
 
 
 ## License
