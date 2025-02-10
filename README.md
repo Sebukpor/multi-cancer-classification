@@ -34,8 +34,8 @@ Key Components:
 
 - **Input Size:** The model expects images of size **224x224** pixels.
 - **Number of Classes:** The model classifies images into the following 26 cancer types:
-  - All Benign
-  - All Early
+  - Acute Lymphoblastic Leukemia Benign
+  - Acute Lymphoblastic Leukemia Early
   - Brain Glioma
   - Breast Malignant
   - Lung Squamous Cell Carcinoma
