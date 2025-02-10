@@ -9,12 +9,12 @@ The application uses a **TensorFlow.js** model hosted on GitHub and can be acces
 - **DAS medhub**
 
 ## Features
-- **Multi-Cancer Classification:** Supports classification for multiple cancer types, such as:
+- **Multi-Cancer Classification:** Supports classification for 26 different cancer types, such as:
   - Brain Glioma
   - Breast Malignant
-  - Cervix Koc
-  - Lung SCC
-  - Oral SCC
+  - Cervix Koilocytotic
+  - Lung Squamous Cell Carcinoma
+  - Oral Squamous Cell Carcinoma
   - And many more...
   
 - **Web-based Inference:** No need for specialized hardware—simply upload an image to the web app, and the prediction is made directly in the browser using TensorFlow.js.
@@ -80,8 +80,8 @@ To improve model robustness, the following augmentations were applied:
 - **F1-Score (macro avg):** 0.99
 - **Training Accuracy:** 99.73%
 - **Confusion Matirx:**
- ![Alt text](images/confusion matrix.png)
- ![Alt text]()
+ ![Alt text](images/confusion_matrix.png)
+ ![Alt text](images/train_and_validation.png)
 
 
 ## Classes of Cancer
