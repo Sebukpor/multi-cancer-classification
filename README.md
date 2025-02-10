@@ -70,15 +70,19 @@ To improve model robustness, the following augmentations were applied:
 - **Optimizer:** Adam optimizer with a learning rate of `1e-4`.
 - **Loss Function:** Categorical Cross-Entropy.
 - **Batch Size:** 32
-- **Training Time:** 7 epochs
+- **Training Time:** 21 epochs
 
 ## Performance Metrics
-- **Test Accuracy (Top-1):** 98.69%
+- **Test Accuracy (Top-1):** 99.73%
 - **Test Accuracy (Top-5):** 100.00%
 - **Precision (macro avg):** 0.99
 - **Recall (macro avg):** 0.99
 - **F1-Score (macro avg):** 0.99
-- **Training Accuracy:** 98.23%
+- **Training Accuracy:** 99.73%
+- **Confusion Matirx:**
+ ![Alt text](images/confusion.png)
+ ![Alt text](images/trailoss.png)
+
 
 ## Classes of Cancer
 The model classifies the following cancer types:
