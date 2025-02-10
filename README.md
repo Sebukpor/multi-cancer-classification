@@ -80,8 +80,8 @@ To improve model robustness, the following augmentations were applied:
 - **F1-Score (macro avg):** 0.99
 - **Training Accuracy:** 99.73%
 - **Confusion Matirx:**
- ![Alt text](images/confusion.png)
- ![Alt text](images/trailoss.png)
+ ![Alt text](images/confusion matrix.png)
+ ![Alt text]()
 
 
 ## Classes of Cancer
