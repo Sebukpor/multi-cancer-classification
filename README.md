@@ -75,9 +75,9 @@ To improve model robustness, the following augmentations were applied:
 ## Performance Metrics
 - **Test Accuracy (Top-1):** 99.73%
 - **Test Accuracy (Top-5):** 100.00%
-- **Precision (macro avg):** 0.99
-- **Recall (macro avg):** 0.99
-- **F1-Score (macro avg):** 0.99
+- **Precision (macro avg):** 1.00
+- **Recall (macro avg):** 1.00
+- **F1-Score (macro avg):** 1.00
 - **Training Accuracy:** 99.73%
   
   ## Confusion Matrix
