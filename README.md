@@ -38,9 +38,9 @@ Key Components:
   - All Early
   - Brain Glioma
   - Breast Malignant
-  - Lung SCC
-  - Cervix Koc
-  - Oral SCC
+  - Lung Squamous Cell Carcinoma
+  - Cervix Koilocytotic
+  - Oral Squamous Cell Carcinoma
   - … (include all 26 cancer types)
   
 - **Model Format:** The model is in TensorFlow.js format (`model.json` and corresponding weight files).
@@ -79,8 +79,11 @@ To improve model robustness, the following augmentations were applied:
 - **Recall (macro avg):** 0.99
 - **F1-Score (macro avg):** 0.99
 - **Training Accuracy:** 99.73%
-- **Confusion Matirx:**
+  
+  ## Confusion Matrix
  ![Alt text](images/confusion_matrix.png)
+
+ ## Validation and Training Loss Graph
  ![Alt text](images/train_and_validation.png)
 
 
