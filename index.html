@@ -5,108 +5,245 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Cancer Classification - DAS medhub</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-green: #008000;
+            --primary-orange: #FFA500;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #2d3436;
+            --success: #4CAF50;
+            --error: #f44336;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        header {
             text-align: center;
-            margin: 20px;
+            margin-bottom: 2rem;
         }
 
         h1 {
-            color: #008000; /* Green for DAS */
-            display: inline;
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            margin: 0;
         }
 
         h1 span {
-            color: #FFA500; /* Orange for medhub */
+            color: var(--primary-orange);
+        }
+
+        h2 {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .upload-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .upload-label {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .upload-label:hover {
+            background: #006400;
+            transform: translateY(-2px);
+        }
+
+        #image-upload {
+            display: none;
         }
 
         #image-container {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 450px;
+            margin: 2rem auto;
+            max-width: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         #uploaded-image {
-            max-width: 80%;
-            max-height: 450px;
+            width: 100%;
+            height: auto;
             display: none;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-size: 1.5em;
-            font-weight: bold;
         }
 
         #predict-button {
-            display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
+            margin: 1rem auto;
+            padding: 1rem 2rem;
+            background: var(--primary-orange);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1.1rem;
             cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            display: none;
+        }
+
+        #predict-button:hover:not(:disabled) {
+            background: #cc8400;
+            transform: translateY(-2px);
         }
 
         #predict-button:disabled {
-            background-color: #ccc;
+            background: #cccccc;
             cursor: not-allowed;
         }
 
-        /* Loading message */
+        .result-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .prediction-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 6px;
+        }
+
+        .confidence-bar {
+            height: 20px;
+            background: var(--primary-green);
+            border-radius: 4px;
+            margin-left: auto;
+            min-width: 80px;
+            position: relative;
+        }
+
+        .confidence-text {
+            position: absolute;
+            right: 8px;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
         #loading-message {
-            margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #FF0000;
+            text-align: center;
+            color: var(--primary-orange);
+            font-weight: 500;
+            margin: 2rem 0;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <h1>DAS <span>medhub</span></h1>
-    <h2>Multi-Cancer Classification</h2>
+    <div class="container">
+        <header>
+            <h1>DAS <span>medhub</span></h1>
+            <h2>Multi-Cancer Classification</h2>
+        </header>
 
-    <div id="loading-message">Loading model, please wait...</div> <!-- Loading Message -->
+        <div id="loading-message">
+            <div class="spinner"></div>
+            <p>Loading model, please wait...</p>
+        </div>
 
-    <input type="file" id="image-upload" accept="image/*" disabled> <!-- Initially disabled -->
-    <button id="predict-button" onclick="predict()">Predict</button>
+        <div class="upload-section">
+            <label for="image-upload" class="upload-label">Upload Medical Image</label>
+            <input type="file" id="image-upload" accept="image/*" disabled>
+        </div>
 
-    <div id="image-container">
-        <img id="uploaded-image" src="#" alt="Uploaded Image">
+        <div id="image-container">
+            <img id="uploaded-image" src="#" alt="Uploaded Image">
+        </div>
+
+        <button id="predict-button" onclick="predict()">Analyze Image</button>
+
+        <div class="result-card" id="result" style="display: none;">
+            <h3>Analysis Results</h3>
+            <div id="predictions-container"></div>
+        </div>
     </div>
-
-    <div id="result"></div>
 
     <script>
     let model;
+    const classNames = [
+        'Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early', 
+        'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro', 
+        'Brain Glioma', 'Brain Meningioma', 'Brain Tumor', 
+        'Breast Benign', 'Breast Malignant', 
+        'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic', 
+        'Cervix Parabasal', 'Cervix Superficial Intermediate', 
+        'Colon Adenocarcinoma', 'Colon Benign Tissue', 
+        'Kidney Normal', 'Kidney Tumor', 
+        'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma', 
+        'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma', 
+        'Oral Normal', 'Oral Squamous Cell Carcinoma'
+    ];
 
-    // Force CPU backend to avoid WebGL issues
-    // Check if WebGL is available, otherwise fallback to CPU
+    // Backend configuration
     if (tf.backend().name === 'webgl') {
         console.log('Using WebGL backend');
-        loadModel();  // Load the model immediately if using WebGL
+        loadModel();
     } else {
         tf.setBackend('cpu').then(() => {
             console.log('Using CPU backend');
-            loadModel();  // Load the model after setting the backend to CPU
+            loadModel();
         });
     }
 
-    // Load the TensorFlow.js model from your hosted path
     async function loadModel() {
         try {
             model = await tf.loadGraphModel('model/model.json');
             console.log('Model loaded successfully');
-            document.getElementById('loading-message').style.display = 'none'; // Hide loading message
-            document.getElementById('image-upload').disabled = false; // Enable file upload after model loads
+            document.getElementById('loading-message').style.display = 'none';
+            document.getElementById('image-upload').disabled = false;
         } catch (error) {
             console.error('Error loading model:', error);
-            document.getElementById('loading-message').innerText = 'Error loading model';
+            document.getElementById('loading-message').innerHTML = `
+                <div style="color: ${var(--error)}">
+                    Error loading model. Please refresh the page.
+                </div>
+            `;
         }
     }
 
@@ -114,75 +251,70 @@
     const uploadedImage = document.getElementById('uploaded-image');
     const predictButton = document.getElementById('predict-button');
     const resultDiv = document.getElementById('result');
+    const predictionsContainer = document.getElementById('predictions-container');
 
     imageUpload.addEventListener('change', (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
 
-        resultDiv.innerText = '';  // Clear the previous prediction result
+        resultDiv.style.display = 'none';
+        predictionsContainer.innerHTML = '';
+        predictButton.style.display = 'none';
 
         reader.onload = function(e) {
-            uploadedImage.src = e.target.result;  // Set the image source to the file content
-            uploadedImage.style.display = 'block';  // Show the image
-            predictButton.style.display = 'inline-block';  // Show the predict button
+            uploadedImage.src = e.target.result;
+            uploadedImage.style.display = 'block';
+            predictButton.style.display = 'block';
         };
 
-        if (file) {
-            reader.readAsDataURL(file);  // Read the image file as a data URL
-        }
+        if (file) reader.readAsDataURL(file);
     });
 
     async function predict() {
         try {
-            predictButton.disabled = true;  // Disable the button during prediction
-            resultDiv.innerText = 'Predicting...';
+            predictButton.disabled = true;
+            resultDiv.style.display = 'block';
+            predictionsContainer.innerHTML = `
+                <div class="prediction-item">
+                    <span>Analyzing image...</span>
+                    <div class="confidence-bar" style="width: 100%; background: #ddd;">
+                        <span class="confidence-text">Processing</span>
+                    </div>
+                </div>
+            `;
 
-            // Preprocess the image (resize, normalize, expand dimensions)
             const tensorImg = tf.browser.fromPixels(uploadedImage)
-                .resizeBilinear([224, 224])  // Resize image to match model input shape
+                .resizeBilinear([224, 224])
                 .toFloat()
-                .div(tf.scalar(255))  // Normalize image to [0, 1]
-                .expandDims();  // Add batch dimension
-            
-            console.log('Input Tensor Shape:', tensorImg.shape);  // Debug: Check tensor shape
+                .div(tf.scalar(255))
+                .expandDims();
 
-            // Make the prediction
-            const logits = model.predict(tensorImg);
-            const predictions = logits.arraySync()[0];  // Get raw predictions
-            console.log('Raw Predictions:', predictions);  // Log raw predictions
-
-            // Ensure that the class names match your model's class labels
-            const classNames = ['Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early', 'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro', 
-                'Brain Glioma', 'Brain Meningioma', 'Brain Tumor', 
-                'Breast Benign', 'Breast Malignant', 
-                'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic', 'Cervix Parabasal', 
-                'Cervix Superficial Intermediate', 'Colon Adenocarcinoma', 'Colon Benign Tissue', 
-                'Kidney Normal', 'Kidney Tumor', 
-                'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma', 
-                'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma', 
-                'Oral Normal', 'Oral Squamous Cell Carcinoma'];
-
-            // Get the top prediction
-            const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
-            const result = `Prediction: ${classNames[predictedClassIndex]} (Confidence: ${(Math.max(...predictions) * 100).toFixed(1)}%)`;
-            resultDiv.innerText = result;
+            const logits = await model.predict(tensorImg);
+            const predictions = await logits.arraySync()[0];
+            const sortedIndices = predictions.map((p, i) => i)
+                .sort((a, b) => predictions[b] - predictions[a]);
 
             // Display top 3 predictions
-            console.log('Top 3 Predictions:');
-            const sortedPredictions = predictions.slice().sort((a, b) => b - a);
-            const top3Predictions = sortedPredictions.slice(0, 3);
-            top3Predictions.forEach((prediction, index) => {
-                console.log(`Rank ${index + 1}: ${classNames[predictions.indexOf(prediction)]} (Confidence: ${(prediction * 100).toFixed(1)}%)`);
-            });
+            predictionsContainer.innerHTML = sortedIndices.slice(0, 3).map((index, i) => `
+                <div class="prediction-item">
+                    <span>${i + 1}. ${classNames[index]}</span>
+                    <div class="confidence-bar" style="width: ${predictions[index] * 100}%">
+                        <span class="confidence-text">${(predictions[index] * 100).toFixed(1)}%</span>
+                    </div>
+                </div>
+            `).join('');
 
-            predictButton.disabled = false;  // Enable the button again
         } catch (error) {
-            console.error('Error making prediction:', error);
-            resultDiv.innerText = 'Error making prediction, refresh browser';
+            console.error('Prediction error:', error);
+            predictionsContainer.innerHTML = `
+                <div style="color: var(--error); text-align: center; padding: 1rem;">
+                    Error processing prediction. Please try again.
+                </div>
+            `;
+        } finally {
             predictButton.disabled = false;
         }
     }
-</script>
-
+    </script>
 </body>
 </html>
