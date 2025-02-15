@@ -239,11 +239,14 @@
             document.getElementById('image-upload').disabled = false;
         } catch (error) {
             console.error('Error loading model:', error);
-            document.getElementById('loading-message').innerHTML = `
-                <div style="color: ${var(--error)}">
-                    Error loading model. Please refresh the page.
-                </div>
-            `;
+           const errorColor = getComputedStyle(document.documentElement).getPropertyValue('--error');
+document.getElementById('loading-message').innerHTML = `
+    <div style="color: ${errorColor}">
+        Error loading model. Please refresh the page.
+    </div>
+`;
+
+            
         }
     }
 
