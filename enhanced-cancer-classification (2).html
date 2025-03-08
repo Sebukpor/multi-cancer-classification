@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Cancer Classification - DAS medhub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <header class="app-header">
+        <h1>DAS <span>medhub</span></h1>
+        <p>Advanced Multi-Cancer Classification System</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Cancer Classification Assistant</h2>
+            </div>
+            <div class="card-body">
+                <div class="stepper">
+                    <div class="step active" id="step1-indicator">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Upload Image</div>
+                    </div>
+                    <div class="step" id="step2-indicator">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Analysis</div>
+                    </div>
+                    <div class="step" id="step3-indicator">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Patient Info</div>
+                    </div>
+                    <div class="step" id="step4-indicator">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Report</div>
+                    </div>
+                </div>
+
+                <div id="loading-message" class="loading-container">
+                    <div class="spinner"></div>
+                    <p>Loading diagnostic model, please wait...</p>
+                </div>
+
+                <div class="step-content active" id="step1-content">
+                    <div class="form-section">
+                        <h3>Upload Medical Image</h3>
+                        <p class="text-light">Please upload a high-quality medical image for analysis</p>
+                        
+                        <label for="image-upload" class="upload-container">
+                            <div class="upload-icon">📁</div>
+                            <p class="upload-text">Click or drag to upload image</p>
+                            <button class="btn btn-outline">Select File</button>
+                            <input type="file" id="image-upload" accept="image/*">
+                        </label>
+
+                        <div id="image-container">
+                            <img id="uploaded-image" src="#" alt="Uploaded Medical Image">
+                        </div>
+                    </div>
+
+                    <div class="buttons-container">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button id="next-to-step2" class="btn btn-primary" disabled>Next: Analyze Image</button>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step2-content">
+                    <div class="form-section">
+                        <div class="result-card" id="result">
+                            <div class="result-header">
+                                <h3 class="result-title">Analysis Results</h3>
+                                <div id="analysis-timestamp"></div>
+                            </div>
+                            <div id="predictions-container">
+                                <!-- Results will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button id="download-quick-report" class="btn btn-secondary">Download Quick Report</button>
+                        <button id="next-to-step3" class="btn btn-primary">Add Patient Info</button>
+                    </div>
+
+                    <div class="action-hint">
+                        <p>You can download a report without patient information or proceed to add patient details</p>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step3-content">
+                    <div class="form-section">
+                        <h3>Patient Demographics</h3>
+                        <div class="patient-optional-notice">
+                            <p>Adding patient information is optional but recommended for complete medical documentation.</p>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patient-id">Patient ID</label>
+                                <input type="text" id="patient-id" class="form-control" placeholder="e.g., P12345">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-name">Full Name</label>
+                                <input type="text" id="patient-name" class="form-control" placeholder="Patient's full name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patient-dob">Date of Birth</label>
+                                <input type="date" id="patient-dob" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-gender">Gender</label>
+                                <select id="patient-gender" class="form-control">
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Medical Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="referring-physician">Referring Physician</label>
+                                <input type="text" id="referring-physician" class="form-control" placeholder="Physician name">
+                            </div>
+                            <div class="form-group">
+                                <label for="examination-date">Examination Date</label>
+                                <input type="date" id="examination-date" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="clinical-history">Clinical History (optional)</label>
+                            <textarea id="clinical-history" class="form-control" rows="3" placeholder="Brief description of patient's clinical history"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="buttons-container">
+                        <button id="back-to-step2" class="btn btn-outline">Back to Analysis</button>
+                        <button id="next-to-step4" class="btn btn-primary">Generate Full Report</button>
+                    </div>
+                </div>
+
+                <div class="step-content" id="step4-content">
+                    <div class="form-section">
+                        <h3>Diagnosis Report</h3>
+                        
+                        <div class="report-summary">
+                            <h4>Patient Information</h4>
+                            <div id="report-patient-info"></div>
+                        </div>
+                        
+                        <div class="report-summary">
+                            <h4>Analysis Results</h4>
+                            <div id="report-analysis-results"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="report-notes">Radiologist Notes</label>
+                            <textarea id="report-notes" class="form-control" rows="4" placeholder="Add medical interpretation or additional notes"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="download-container">
+                        <div class="download-icon">📄</div>
+                        <p>Your comprehensive report is ready</p>
+                        <button id="download-full-report" class="btn btn-secondary">Download Full Report</button>
+                    </div>
+
+                    <div class="buttons-container">
+                        <button id="back-to-step3" class="btn btn-outline">Edit Patient Info</button>
+                        <button id="start-new" class="btn btn-primary">Start New Analysis</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
