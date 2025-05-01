@@ -1,4 +1,3 @@
-```css
 :root {
     --primary-color: #2e7d32;
     --primary-light: #60ad5e;
@@ -801,4 +800,3 @@ select.form-control {
 .btn:focus {
     outline: none;
 }
-```
