@@ -1487,7 +1487,7 @@ if (tf.backend().name === 'webgl') {
 
 async function loadModel() {
     try {
-        model = await tf.loadGraphModel('multi-cancer-model-99.69-xception-21/model.json');
+        model = await tf.loadGraphModel('model/model.json');
         console.log('Model loaded successfully');
         document.getElementById('loading-message').style.display = 'none';
         document.getElementById('image-upload').disabled = false;
