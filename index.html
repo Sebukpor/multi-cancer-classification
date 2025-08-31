@@ -34,13 +34,11 @@
     --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--background);
@@ -50,7 +48,6 @@ body {
     min-height: 100vh;
     line-height: 1.6;
 }
-
 .app-header {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
     color: white;
@@ -60,7 +57,6 @@ body {
     position: relative;
     overflow: hidden;
 }
-
 .app-header:before {
     content: '';
     position: absolute;
@@ -72,7 +68,6 @@ body {
     opacity: 0.6;
     pointer-events: none;
 }
-
 .app-header h1 {
     margin: 0;
     font-size: 2.75rem;
@@ -80,13 +75,11 @@ body {
     letter-spacing: -0.5px;
     position: relative;
 }
-
 .app-header h1 span {
     color: var(--accent-light);
     font-weight: 800;
     position: relative;
 }
-
 .app-header h1 span:after {
     content: '';
     position: absolute;
@@ -98,7 +91,6 @@ body {
     transform: scaleX(0.7);
     transform-origin: left;
 }
-
 .app-header p {
     margin-top: 0.75rem;
     font-weight: 400;
@@ -108,13 +100,11 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-
 .container {
     max-width: 1100px;
     margin: 2.5rem auto;
     padding: 0 1.5rem;
 }
-
 .card {
     background: var(--card-bg);
     border-radius: 16px;
@@ -124,12 +114,10 @@ body {
     transition: var(--transition);
     border: 1px solid rgba(0,0,0,0.05);
 }
-
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
-
 .card-header {
     padding: 1.75rem;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
@@ -137,7 +125,6 @@ body {
     position: relative;
     overflow: hidden;
 }
-
 .card-header:after {
     content: '';
     position: absolute;
@@ -149,7 +136,6 @@ body {
     border-radius: 50%;
     opacity: 0.6;
 }
-
 .card-header h2 {
     font-size: 1.75rem;
     font-weight: 600;
@@ -157,11 +143,9 @@ body {
     position: relative;
     z-index: 1;
 }
-
 .card-body {
     padding: 2rem;
 }
-
 .stepper {
     display: flex;
     justify-content: space-between;
@@ -170,21 +154,17 @@ body {
     overflow-x: auto;
     padding-bottom: 1rem;
 }
-
 .stepper::-webkit-scrollbar {
     height: 4px;
 }
-
 .stepper::-webkit-scrollbar-track {
     background: var(--border-light);
     border-radius: 10px;
 }
-
 .stepper::-webkit-scrollbar-thumb {
     background: var(--primary-light);
     border-radius: 10px;
 }
-
 .step {
     display: flex;
     flex-direction: column;
@@ -193,7 +173,6 @@ body {
     position: relative;
     min-width: 120px;
 }
-
 .step::before {
     content: '';
     position: absolute;
@@ -205,31 +184,25 @@ body {
     z-index: 0;
     transition: var(--transition);
 }
-
 .step:first-child::before {
     display: none;
 }
-
 .step.active .step-number {
     background-color: var(--primary-color);
     box-shadow: 0 0 0 5px rgba(26, 82, 118, 0.2);
     transform: scale(1.1);
 }
-
 .step.completed .step-number {
     background-color: var(--success);
     box-shadow: 0 0 0 5px rgba(39, 174, 96, 0.2);
 }
-
 .step.completed::before {
     background-color: var(--success);
 }
-
 .step.active .step-title {
     color: var(--primary-color);
     font-weight: 600;
 }
-
 .step-number {
     width: 40px;
     height: 40px;
@@ -245,19 +218,16 @@ body {
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
 }
-
 .step-title {
     font-size: 0.95rem;
     color: var(--text-light);
     text-align: center;
     transition: var(--transition);
 }
-
 .form-section {
     margin-bottom: 2rem;
     animation: fadeIn 0.5s ease-out;
 }
-
 .form-section h3 {
     margin-bottom: 1.25rem;
     color: var(--primary-color);
@@ -266,7 +236,6 @@ body {
     position: relative;
     padding-bottom: 0.5rem;
 }
-
 .form-section h3:after {
     content: '';
     position: absolute;
@@ -277,24 +246,20 @@ body {
     background-color: var(--primary-light);
     border-radius: 3px;
 }
-
 .text-light {
     color: var(--text-light);
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
 }
-
 .form-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 1.5rem;
 }
-
 .form-group {
     margin-bottom: 1.5rem;
 }
-
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
@@ -302,7 +267,6 @@ body {
     color: var(--text-secondary);
     font-size: 0.95rem;
 }
-
 .form-control {
     width: 100%;
     padding: 0.875rem 1rem;
@@ -314,14 +278,12 @@ body {
     background-color: #fcfcfc;
     color: var(--text-primary);
 }
-
 .form-control:focus {
     border-color: var(--primary-light);
     outline: none;
     box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.2);
     background-color: white;
 }
-
 .upload-container {
     border: 2px dashed var(--border-light);
     border-radius: 16px;
@@ -334,33 +296,27 @@ body {
     position: relative;
     overflow: hidden;
 }
-
 .upload-container:hover {
     border-color: var(--primary-light);
     background-color: rgba(41, 128, 185, 0.05);
 }
-
 .upload-container:hover .upload-icon {
     transform: scale(1.1);
 }
-
 .upload-icon {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 1.25rem;
     transition: var(--transition);
 }
-
 .upload-text {
     color: var(--text-secondary);
     margin-bottom: 1.25rem;
     font-size: 1.1rem;
 }
-
 #image-upload {
     display: none;
 }
-
 #image-container {
     margin: 2.5rem auto;
     max-width: 450px;
@@ -371,19 +327,16 @@ body {
     position: relative;
     transition: var(--transition);
 }
-
 #image-container:hover {
     transform: scale(1.02);
     box-shadow: var(--shadow-lg);
 }
-
 #uploaded-image {
     width: 100%;
     height: auto;
     display: block;
     transition: var(--transition);
 }
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -401,7 +354,6 @@ body {
     overflow: hidden;
     min-width: 120px;
 }
-
 .btn::after {
     content: '';
     position: absolute;
@@ -417,54 +369,45 @@ body {
     opacity: 0;
     transition: transform 0.3s, opacity 0.8s;
 }
-
 .btn:active::after {
     transform: scale(0, 0);
     opacity: 0.3;
     transition: 0s;
 }
-
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
     box-shadow: 0 4px 10px rgba(26, 82, 118, 0.3);
 }
-
 .btn-primary:hover:not(:disabled) {
     background-color: var(--primary-dark);
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(26, 82, 118, 0.4);
 }
-
 .btn-primary:active:not(:disabled) {
     transform: translateY(-1px);
 }
-
 .btn-secondary {
     background-color: var(--secondary-color);
     color: white;
     box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
 }
-
 .btn-secondary:hover:not(:disabled) {
     background-color: var(--secondary-dark);
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
 }
-
 .btn-outline {
     background-color: transparent;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     box-shadow: none;
 }
-
 .btn-outline:hover {
     background-color: rgba(26, 82, 118, 0.08);
     border-color: var(--primary-dark);
     color: var(--primary-dark);
 }
-
 .btn:disabled {
     background-color: #d0d0d0;
     color: #999999;
@@ -472,7 +415,6 @@ body {
     transform: none !important;
     box-shadow: none;
 }
-
 .buttons-container {
     display: flex;
     justify-content: space-between;
@@ -480,7 +422,6 @@ body {
     flex-wrap: wrap;
     gap: 1rem;
 }
-
 .result-card {
     background: var(--card-bg);
     border-radius: 16px;
@@ -490,11 +431,9 @@ body {
     border: 1px solid rgba(0,0,0,0.03);
     transition: var(--transition);
 }
-
 .result-card:hover {
     box-shadow: var(--shadow-lg);
 }
-
 .result-header {
     display: flex;
     justify-content: space-between;
@@ -503,18 +442,15 @@ body {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-light);
 }
-
 .result-title {
     color: var(--primary-color);
     font-weight: 600;
     font-size: 1.3rem;
 }
-
 #analysis-timestamp {
     color: var(--text-light);
     font-size: 0.9rem;
 }
-
 .prediction-item {
     display: flex;
     align-items: center;
@@ -525,23 +461,19 @@ body {
     transition: var(--transition);
     border: 1px solid rgba(0,0,0,0.03);
 }
-
 .prediction-item:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
-
 .prediction-label {
     flex: 0 0 60%;
     font-weight: 500;
     color: var(--text-primary);
 }
-
 .confidence-container {
     flex: 1;
     margin-left: 1.5rem;
 }
-
 .confidence-bar-bg {
     width: 100%;
     height: 10px;
@@ -549,14 +481,12 @@ body {
     border-radius: 5px;
     overflow: hidden;
 }
-
 .confidence-bar {
     height: 100%;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-light));
     border-radius: 5px;
     transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .confidence-text {
     text-align: right;
     font-size: 0.95rem;
@@ -564,13 +494,11 @@ body {
     color: var(--primary-color);
     font-weight: 600;
 }
-
 .loading-container {
     text-align: center;
     padding: 3rem 2rem;
     animation: fadeIn 0.5s ease-out;
 }
-
 .spinner {
     width: 60px;
     height: 60px;
@@ -580,26 +508,21 @@ body {
     animation: spin 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
     margin: 0 auto 1.5rem;
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 .loading-container p {
     color: var(--text-secondary);
     font-size: 1.1rem;
 }
-
 .step-content {
     display: none;
 }
-
 .step-content.active {
     display: block;
     animation: fadeIn 0.5s ease-out;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -610,7 +533,6 @@ body {
         transform: translateY(0);
     }
 }
-
 .report-summary {
     padding: 1.5rem;
     background-color: rgba(26, 82, 118, 0.05);
@@ -618,18 +540,15 @@ body {
     margin: 1.5rem 0;
     border-left: 4px solid var(--primary-light);
 }
-
 .report-summary h4 {
     color: var(--primary-color);
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
-
 #report-patient-info,
 #report-analysis-results {
     line-height: 1.7;
 }
-
 .download-container {
     text-align: center;
     margin: 3rem 0;
@@ -638,41 +557,34 @@ body {
     border-radius: 16px;
     transition: var(--transition);
 }
-
 .download-container:hover {
     background-color: rgba(26, 82, 118, 0.05);
     transform: translateY(-3px);
 }
-
 .download-icon {
     font-size: 3.5rem;
     color: var(--primary-color);
     margin-bottom: 1.25rem;
     transition: var(--transition);
 }
-
 .download-container:hover .download-icon {
     transform: scale(1.1);
 }
-
 .download-container p {
     font-size: 1.2rem;
     color: var(--text-secondary);
     margin-bottom: 1.25rem;
 }
-
 .quick-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 1.25rem;
     margin: 2rem 0;
 }
-
 .quick-actions .btn {
     flex: 1;
     min-width: 180px;
 }
-
 .patient-optional-notice {
     background-color: rgba(243, 156, 18, 0.08);
     border-left: 4px solid var(--warning);
@@ -680,13 +592,11 @@ body {
     margin: 1.5rem 0;
     border-radius: 8px;
 }
-
 .patient-optional-notice p {
     color: var(--text-secondary);
     font-size: 0.95rem;
     margin: 0;
 }
-
 .action-hint {
     font-size: 0.9rem;
     color: var(--text-light);
@@ -694,7 +604,6 @@ body {
     text-align: center;
     font-style: italic;
 }
-
 .analysis-image-container {
     margin: 2rem auto;
     max-width: 400px;
@@ -703,111 +612,100 @@ body {
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-light);
 }
-
 .analysis-image-container img {
     width: 100%;
     height: auto;
     display: block;
 }
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .card-body {
         padding: 1.5rem;
     }
-    
+   
     .stepper {
         flex-wrap: wrap;
         justify-content: flex-start;
         gap: 1.5rem;
     }
-
     .step {
         margin-bottom: 0.5rem;
         flex-direction: row;
         width: calc(50% - 0.75rem);
         align-items: flex-start;
     }
-
     .step::before {
         display: none;
     }
-
     .step-number {
         margin-right: 0.75rem;
         margin-bottom: 0;
     }
-
     .buttons-container {
         flex-direction: column;
         gap: 1rem;
     }
-
     .btn {
         width: 100%;
     }
-    
+   
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+   
     .result-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
     }
-    
+   
     .prediction-item {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+   
     .prediction-label {
         margin-bottom: 0.75rem;
     }
-    
+   
     .confidence-container {
         width: 100%;
         margin-left: 0;
     }
 }
-
 @media (max-width: 480px) {
     .app-header h1 {
         font-size: 2.25rem;
     }
-    
+   
     .app-header p {
         font-size: 1rem;
     }
-    
+   
     .card-header h2 {
         font-size: 1.5rem;
     }
-    
+   
     .form-section h3 {
         font-size: 1.25rem;
     }
-    
+   
     .step {
         width: 100%;
     }
-    
+   
     .upload-container {
         padding: 1.5rem 1rem;
     }
 }
-
 /* Additional enhancements */
 textarea.form-control {
     resize: vertical;
     min-height: 100px;
 }
-
 input[type="date"].form-control {
     appearance: none;
 }
-
 select.form-control {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23445566' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
@@ -816,25 +714,21 @@ select.form-control {
     background-size: 16px 12px;
     padding-right: 2.5rem;
 }
-
 /* Improved accessibility focus styles */
 :focus {
     outline: 3px solid rgba(26, 82, 118, 0.3);
     outline-offset: 2px;
 }
-
 .form-control:focus,
 .btn:focus {
     outline: none;
 }
-
 /* Tooltip styles */
 .tooltip {
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
-
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 200px;
@@ -853,12 +747,10 @@ select.form-control {
     font-size: 0.85rem;
     font-weight: normal;
 }
-
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
 }
-
 /* Status indicators */
 .status-indicator {
     display: inline-flex;
@@ -868,22 +760,18 @@ select.form-control {
     font-size: 0.85rem;
     font-weight: 500;
 }
-
 .status-indicator.success {
     background-color: rgba(39, 174, 96, 0.1);
     color: var(--success);
 }
-
 .status-indicator.warning {
     background-color: rgba(243, 156, 18, 0.1);
     color: var(--warning);
 }
-
 .status-indicator.error {
     background-color: rgba(231, 76, 60, 0.1);
     color: var(--error);
 }
-
 /* Badges */
 .badge {
     display: inline-block;
@@ -894,22 +782,18 @@ select.form-control {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
 .badge-primary {
     background-color: var(--primary-color);
     color: white;
 }
-
 .badge-secondary {
     background-color: var(--secondary-color);
     color: white;
 }
-
 .badge-accent {
     background-color: var(--accent-color);
     color: white;
 }
-
 /* Alert boxes */
 .alert {
     padding: 1rem;
@@ -918,40 +802,33 @@ select.form-control {
     display: flex;
     align-items: flex-start;
 }
-
 .alert-icon {
     margin-right: 0.75rem;
     font-size: 1.25rem;
 }
-
 .alert-content {
     flex: 1;
 }
-
 .alert-success {
     background-color: rgba(39, 174, 96, 0.1);
     border-left: 4px solid var(--success);
     color: var(--success);
 }
-
 .alert-warning {
     background-color: rgba(243, 156, 18, 0.1);
     border-left: 4px solid var(--warning);
     color: var(--warning);
 }
-
 .alert-error {
     background-color: rgba(231, 76, 60, 0.1);
     border-left: 4px solid var(--error);
     color: var(--error);
 }
-
 .alert-info {
     background-color: rgba(52, 152, 219, 0.1);
     border-left: 4px solid var(--info);
     color: var(--info);
 }
-
 /* Progress bar */
 .progress-container {
     width: 100%;
@@ -960,14 +837,12 @@ select.form-control {
     margin: 1rem 0;
     overflow: hidden;
 }
-
 .progress-bar {
     height: 10px;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-light));
     border-radius: 10px;
     transition: width 0.5s ease;
 }
-
 /* Floating action button */
 .fab {
     position: fixed;
@@ -986,47 +861,39 @@ select.form-control {
     transition: var(--transition);
     z-index: 100;
 }
-
 .fab:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     background-color: var(--primary-dark);
 }
-
 /* Card hover effects */
 .card-hover {
     transition: var(--transition);
 }
-
 .card-hover:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
-
 /* Responsive tables */
 .responsive-table {
     width: 100%;
     border-collapse: collapse;
     margin: 1rem 0;
 }
-
 .responsive-table th,
 .responsive-table td {
     padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid var(--border-light);
 }
-
 .responsive-table th {
     background-color: var(--background);
     color: var(--text-secondary);
     font-weight: 600;
 }
-
 .responsive-table tr:hover {
     background-color: rgba(26, 82, 118, 0.03);
 }
-
 @media (max-width: 768px) {
     .responsive-table {
         display: block;
@@ -1034,7 +901,6 @@ select.form-control {
         white-space: nowrap;
     }
 }
-
 /* Image preview with caption */
 .image-preview {
     position: relative;
@@ -1043,13 +909,11 @@ select.form-control {
     overflow: hidden;
     box-shadow: var(--shadow-md);
 }
-
 .image-preview img {
     width: 100%;
     height: auto;
     display: block;
 }
-
 .image-caption {
     position: absolute;
     bottom: 0;
@@ -1060,7 +924,6 @@ select.form-control {
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
 }
-
 /* Section divider */
 .section-divider {
     display: flex;
@@ -1068,22 +931,18 @@ select.form-control {
     margin: 2rem 0;
     color: var(--text-light);
 }
-
 .section-divider::before,
 .section-divider::after {
     content: '';
     flex: 1;
     border-bottom: 1px solid var(--border-light);
 }
-
 .section-divider::before {
     margin-right: 1rem;
 }
-
 .section-divider::after {
     margin-left: 1rem;
 }
-
 /* Avatar */
 .avatar {
     width: 40px;
@@ -1097,29 +956,24 @@ select.form-control {
     font-weight: 600;
     text-transform: uppercase;
 }
-
 /* Empty state */
 .empty-state {
     text-align: center;
     padding: 3rem;
     color: var(--text-light);
 }
-
 .empty-state-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--border-light);
 }
-
 .empty-state h3 {
     margin-bottom: 0.5rem;
     color: var(--text-secondary);
 }
-
 .empty-state p {
     margin-bottom: 1.5rem;
 }
-
 /* Dark mode toggle (optional) */
 .dark-mode-toggle {
     position: fixed;
@@ -1127,7 +981,6 @@ select.form-control {
     left: 2rem;
     z-index: 100;
 }
-
 .dark-mode-toggle button {
     background: var(--primary-color);
     color: white;
@@ -1142,21 +995,17 @@ select.form-control {
     box-shadow: var(--shadow-md);
     transition: var(--transition);
 }
-
 .dark-mode-toggle button:hover {
     transform: scale(1.1);
     background: var(--primary-dark);
 }
-
 /* Animation classes */
 .fade-in {
     animation: fadeIn 0.5s ease-out;
 }
-
 .slide-up {
     animation: slideUp 0.5s ease-out;
 }
-
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -1167,11 +1016,9 @@ select.form-control {
         transform: translateY(0);
     }
 }
-
 .pulse {
     animation: pulse 2s infinite;
 }
-
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -1183,85 +1030,72 @@ select.form-control {
         transform: scale(1);
     }
 }
-
 /* Responsive grid */
 .grid {
     display: grid;
     gap: 1.5rem;
 }
-
 .grid-2 {
     grid-template-columns: repeat(2, 1fr);
 }
-
 .grid-3 {
     grid-template-columns: repeat(3, 1fr);
 }
-
 @media (max-width: 768px) {
     .grid-2,
     .grid-3 {
         grid-template-columns: 1fr;
     }
 }
-
 /* Utility classes */
 .text-center {
     text-align: center;
 }
-
 .text-right {
     text-align: right;
 }
-
 .text-left {
     text-align: left;
 }
-
 .mt-1 { margin-top: 0.5rem; }
 .mt-2 { margin-top: 1rem; }
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
 .mt-5 { margin-top: 3rem; }
-
 .mb-1 { margin-bottom: 0.5rem; }
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.5rem; }
 .mb-4 { margin-bottom: 2rem; }
 .mb-5 { margin-bottom: 3rem; }
-
 .pt-1 { padding-top: 0.5rem; }
 .pt-2 { padding-top: 1rem; }
 .pt-3 { padding-top: 1.5rem; }
 .pt-4 { padding-top: 2rem; }
 .pt-5 { padding-top: 3rem; }
-
 .pb-1 { padding-bottom: 0.5rem; }
 .pb-2 { padding-bottom: 1rem; }
 .pb-3 { padding-bottom: 1.5rem; }
 .pb-4 { padding-bottom: 2rem; }
 .pb-5 { padding-bottom: 3rem; }
-
 .hidden {
     display: none !important;
 }
-
 /* Print styles */
 @media print {
     body {
         background: white;
         color: black;
     }
-    
+   
     .card {
         box-shadow: none;
         border: none;
     }
-    
+   
     .no-print {
         display: none !important;
     }
-    
+   
     .print-only {
         display: block !important;
     }
@@ -1273,7 +1107,6 @@ select.form-control {
         <!--<h1>DAS <span>medhub</span></h1>-->
         <p>Advanced Multi-Cancer Screening System</p>
     </header>
-
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -1298,41 +1131,36 @@ select.form-control {
                         <div class="step-title">Report</div>
                     </div>
                 </div>
-
                 <div id="loading-message" class="loading-container">
                     <div class="spinner"></div>
                     <p>Loading diagnostic model, please wait...</p>
                 </div>
-
                 <div class="step-content active" id="step1-content">
                     <div class="form-section">
                         <h3>Upload Medical Image</h3>
                         <p class="text-light">Please upload a high-quality medical image for analysis (CT, MRI, or microscopic images)</p>
-                        
+                       
                         <label for="image-upload" class="upload-container">
                             <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                             <p class="upload-text">Click or drag to upload image</p>
                             <button class="btn btn-outline">Select File</button>
                             <input type="file" id="image-upload" accept="image/*">
                         </label>
-
                         <div id="image-container">
                             <img id="uploaded-image" src="#" alt="Uploaded Medical Image">
                         </div>
                     </div>
-
                     <div class="buttons-container">
                         <div></div> <!-- Empty div for spacing -->
                         <button id="next-to-step2" class="btn btn-primary" disabled>Next: Analyze Image <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </div>
-
                 <div class="step-content" id="step2-content">
                     <div class="form-section">
                         <div class="analysis-image-container">
                             <img id="analysis-image" src="#" alt="Medical Image Under Analysis">
                         </div>
-                        
+                       
                         <div class="result-card" id="result">
                             <div class="result-header">
                                 <h3 class="result-title">Analysis Results</h3>
@@ -1344,17 +1172,14 @@ select.form-control {
                             </div>
                         </div>
                     </div>
-
                     <div class="quick-actions">
                         <button id="download-quick-report" class="btn btn-secondary"><i class="fas fa-file-download mr-1"></i> Download Quick Report</button>
                         <button id="next-to-step3" class="btn btn-primary"><i class="fas fa-user-plus mr-1"></i> Add Patient Info</button>
                     </div>
-
                     <div class="action-hint">
                         <p>You can download a report without patient information or proceed to add patient details</p>
                     </div>
                 </div>
-
                 <div class="step-content" id="step3-content">
                     <div class="form-section">
                         <h3>Patient Demographics</h3>
@@ -1388,7 +1213,6 @@ select.form-control {
                             </div>
                         </div>
                     </div>
-
                     <div class="form-section">
                         <h3>Medical Information</h3>
                         <div class="form-row">
@@ -1406,49 +1230,43 @@ select.form-control {
                             <textarea id="clinical-history" class="form-control" rows="3" placeholder="Brief description of patient's clinical history"></textarea>
                         </div>
                     </div>
-
                     <div class="buttons-container">
                         <button id="back-to-step2" class="btn btn-outline"><i class="fas fa-arrow-left mr-1"></i> Back to Analysis</button>
                         <button id="next-to-step4" class="btn btn-primary">Generate Full Report <i class="fas fa-file-medical ml-1"></i></button>
                     </div>
                 </div>
-
                 <div class="step-content" id="step4-content">
                     <div class="form-section">
                         <h3>Diagnosis Report</h3>
-                        
+                       
                         <div class="report-summary">
                             <h4><i class="fas fa-user-injured mr-1"></i> Patient Information</h4>
                             <div id="report-patient-info"></div>
                         </div>
-                        
+                       
                         <div class="report-summary">
                             <h4><i class="fas fa-microscope mr-1"></i> Analysis Results</h4>
                             <div id="report-analysis-results"></div>
                         </div>
-                        
+                       
                         <div class="form-group">
                             <label for="report-notes"><i class="fas fa-notes-medical mr-1"></i> Radiologist Notes</label>
                             <textarea id="report-notes" class="form-control" rows="4" placeholder="Add medical interpretation or additional notes"></textarea>
                         </div>
                     </div>
-
                     <div class="download-container">
                         <div class="download-icon"><i class="fas fa-file-pdf"></i></div>
                         <p>Your comprehensive report is ready</p>
                         <button id="download-full-report" class="btn btn-secondary"><i class="fas fa-download mr-1"></i> Download Full Report</button>
                     </div>
-
                     <div class="buttons-container">
                         <button id="back-to-step3" class="btn btn-outline"><i class="fas fa-edit mr-1"></i> Edit Patient Info</button>
                         <button id="start-new" class="btn btn-primary"><i class="fas fa-redo mr-1"></i> Start New Analysis</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
 <script>
 // Initialize variables
 let model;
@@ -1456,24 +1274,21 @@ let currentStep = 1;
 let analysisResults = [];
 const { jsPDF } = window.jspdf;
 let uploadedImageData = null;
-
 // Set default examination date to today
 document.getElementById('examination-date').valueAsDate = new Date();
-
 const classNames = [
-    'Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early', 
-    'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro', 
-    'Brain Glioma', 'Brain Meningioma', 'Brain Tumor', 
-    'Breast Benign', 'Breast Malignant', 
-    'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic', 
-    'Cervix Parabasal', 'Cervix Superficial Intermediate', 
-    'Colon Adenocarcinoma', 'Colon Benign Tissue', 
-    'Kidney Normal', 'Kidney Tumor', 
-    'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma', 
-    'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma', 
+    'Acute Lymphoblastic Leukemia Benign', 'Acute Lymphoblastic Leukemia Early',
+    'Acute Lymphoblastic Leukemia Pre', 'Acute Lymphoblastic Leukemia Pro',
+    'Brain Glioma', 'Brain Meningioma', 'Brain Tumor',
+    'Breast Benign', 'Breast Malignant',
+    'Cervix Dyskeratotic', 'Cervix Koilocytotic', 'Cervix Metaplastic',
+    'Cervix Parabasal', 'Cervix Superficial Intermediate',
+    'Colon Adenocarcinoma', 'Colon Benign Tissue',
+    'Kidney Normal', 'Kidney Tumor',
+    'Lung Adenocarcinoma', 'Lung Benign Tissue', 'Lung Squamous Cell Carcinoma',
+    'Chronic Lymphocytic Leukemia', 'Follicular Lymphoma', 'Mantle Cell Lymphoma',
     'Oral Normal', 'Oral Squamous Cell Carcinoma'
 ];
-
 // Backend configuration
 if (tf.backend().name === 'webgl') {
     console.log('Using WebGL backend');
@@ -1484,14 +1299,13 @@ if (tf.backend().name === 'webgl') {
         loadModel();
     });
 }
-
 async function loadModel() {
     try {
         model = await tf.loadGraphModel('model/model.json');
         console.log('Model loaded successfully');
         document.getElementById('loading-message').style.display = 'none';
         document.getElementById('image-upload').disabled = false;
-        
+       
         // Show success message
         const successMessage = document.createElement('div');
         successMessage.className = 'alert alert-success fade-in';
@@ -1502,13 +1316,13 @@ async function loadModel() {
             </div>
         `;
         document.getElementById('step1-content').prepend(successMessage);
-        
+       
         // Remove message after 5 seconds
         setTimeout(() => {
             successMessage.classList.add('fade-out');
             setTimeout(() => successMessage.remove(), 500);
         }, 5000);
-        
+       
     } catch (error) {
         console.error('Error loading model:', error);
         const errorColor = getComputedStyle(document.documentElement).getPropertyValue('--error');
@@ -1525,7 +1339,6 @@ async function loadModel() {
         `;
     }
 }
-
 // DOM elements
 const imageUpload = document.getElementById('image-upload');
 const uploadedImage = document.getElementById('uploaded-image');
@@ -1534,63 +1347,52 @@ const imageContainer = document.getElementById('image-container');
 const nextToStep2Button = document.getElementById('next-to-step2');
 const predictionsContainer = document.getElementById('predictions-container');
 const predictionsSummary = document.getElementById('predictions-summary');
-
 // Navigation handlers
 nextToStep2Button.addEventListener('click', () => {
     goToStep(2);
     performAnalysis();
 });
-
 document.getElementById('download-quick-report').addEventListener('click', () => {
     generateQuickPDF();
 });
-
 document.getElementById('next-to-step3').addEventListener('click', () => {
     goToStep(3);
 });
-
 document.getElementById('back-to-step2').addEventListener('click', () => {
     goToStep(2);
 });
-
 document.getElementById('next-to-step4').addEventListener('click', () => {
     if (validatePatientInfo()) {
         goToStep(4);
         prepareReport();
     }
 });
-
 document.getElementById('back-to-step3').addEventListener('click', () => {
     goToStep(3);
 });
-
 document.getElementById('start-new').addEventListener('click', () => {
     resetForm();
     goToStep(1);
 });
-
 document.getElementById('download-full-report').addEventListener('click', () => {
     generateFullPDF();
 });
-
 // Image upload handler
 imageUpload.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = function(e) {
         uploadedImage.src = e.target.result;
         analysisImage.src = e.target.result;
         imageContainer.style.display = 'block';
         nextToStep2Button.disabled = false;
-        
+       
         // Store the image data for PDF generation
         uploadedImageData = e.target.result;
     };
     reader.readAsDataURL(file);
 });
-
 function validatePatientInfo() {
     const patientId = document.getElementById('patient-id').value;
     if (!patientId) {
@@ -1603,28 +1405,27 @@ function validatePatientInfo() {
             </div>
         `;
         document.getElementById('step3-content').prepend(errorMessage);
-        
+       
         // Remove message after 5 seconds
         setTimeout(() => {
             errorMessage.classList.add('fade-out');
             setTimeout(() => errorMessage.remove(), 500);
         }, 5000);
-        
+       
         document.getElementById('patient-id').focus();
         return false;
     }
     return true;
 }
-
 function goToStep(step) {
     // Hide all step contents
     document.querySelectorAll('.step-content').forEach(el => {
         el.classList.remove('active');
     });
-    
+   
     // Show current step content
     document.getElementById(`step${step}-content`).classList.add('active');
-    
+   
     // Update step indicators
     document.querySelectorAll('.step').forEach((el, index) => {
         if (index + 1 < step) {
@@ -1637,15 +1438,18 @@ function goToStep(step) {
             el.classList.remove('active', 'completed');
         }
     });
-    
+   
     currentStep = step;
-    
+   
     // Scroll to top of the card
     document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
 async function performAnalysis() {
     try {
+        // Disable buttons in step 2 during analysis
+        document.getElementById('download-quick-report').disabled = true;
+        document.getElementById('next-to-step3').disabled = true;
+
         // Show loading state
         predictionsContainer.innerHTML = `
             <div class="loading-container">
@@ -1653,33 +1457,29 @@ async function performAnalysis() {
                 <p>Analyzing medical image...</p>
             </div>
         `;
-        
+       
         predictionsSummary.innerHTML = '';
-
         // Process image with TensorFlow.js
         const tensorImg = tf.browser.fromPixels(uploadedImage)
             .resizeBilinear([224, 224])
             .toFloat()
             .div(tf.scalar(255))
             .expandDims();
-
         const logits = await model.predict(tensorImg);
         const predictions = await logits.arraySync()[0];
-        
+       
         // Sort predictions by confidence
         const sortedIndices = predictions.map((p, i) => i)
             .sort((a, b) => predictions[b] - predictions[a]);
-
         // Display top 5 predictions
         analysisResults = sortedIndices.slice(0, 5).map(index => ({
             label: classNames[index],
             confidence: predictions[index]
         }));
-
         // Update timestamp
         const now = new Date();
         document.getElementById('analysis-timestamp').innerText = `Analysis time: ${now.toLocaleString()}`;
-        
+       
         // Create summary of top prediction
         const topResult = analysisResults[0];
         predictionsSummary.innerHTML = `
@@ -1692,7 +1492,6 @@ async function performAnalysis() {
                 </div>
             </div>
         `;
-
         // Display results
         predictionsContainer.innerHTML = analysisResults.map((result, i) => `
             <div class="prediction-item">
@@ -1708,7 +1507,6 @@ async function performAnalysis() {
                 </div>
             </div>
         `).join('');
-
     } catch (error) {
         console.error('Analysis error:', error);
         predictionsContainer.innerHTML = `
@@ -1722,9 +1520,12 @@ async function performAnalysis() {
                 </div>
             </div>
         `;
+    } finally {
+        // Re-enable buttons after analysis
+        document.getElementById('download-quick-report').disabled = false;
+        document.getElementById('next-to-step3').disabled = false;
     }
 }
-
 function prepareReport() {
     // Gather patient information
     const patientId = document.getElementById('patient-id').value || 'Not provided';
@@ -1734,7 +1535,7 @@ function prepareReport() {
     const physician = document.getElementById('referring-physician').value || 'Not provided';
     const examDate = document.getElementById('examination-date').value || 'Not provided';
     const clinicalHistory = document.getElementById('clinical-history').value || 'Not provided';
-    
+   
     // Format patient information for report
     document.getElementById('report-patient-info').innerHTML = `
         <p><strong>Patient ID:</strong> ${patientId}</p>
@@ -1745,48 +1546,46 @@ function prepareReport() {
         <p><strong>Examination Date:</strong> ${examDate ? new Date(examDate).toLocaleDateString() : 'Not provided'}</p>
         <p><strong>Clinical History:</strong> ${clinicalHistory}</p>
     `;
-    
+   
     // Format analysis results for report
     document.getElementById('report-analysis-results').innerHTML = `
         <p><strong>Primary finding:</strong> ${analysisResults[0]?.label || 'No results'} (${(analysisResults[0]?.confidence * 100).toFixed(1)}% confidence)</p>
         <p><strong>Differential diagnoses:</strong></p>
         <ul style="margin-left: 20px;">
-            ${analysisResults.slice(1).map(result => 
+            ${analysisResults.slice(1).map(result =>
                 `<li>${result.label} (${(result.confidence * 100).toFixed(1)}%)</li>`
             ).join('')}
         </ul>
     `;
 }
-
 function generateQuickPDF() {
     // Create new PDF document
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     let yPos = 20;
-    
+   
     // Add logo and title
     doc.setFontSize(18);
     doc.setTextColor(26, 82, 118);
     doc.text("DAS medhub - Quick Analysis Report", pageWidth / 2, yPos, { align: 'center' });
     yPos += 10;
-    
+   
     doc.setFontSize(12);
     doc.setTextColor(100, 100, 100);
     doc.text("Advanced Multi-Cancer Classification System", pageWidth / 2, yPos, { align: 'center' });
     yPos += 15;
-    
+   
     // Add divider line
     doc.setDrawColor(26, 82, 118);
     doc.setLineWidth(0.5);
     doc.line(20, yPos, pageWidth - 20, yPos);
     yPos += 15;
-
     // Add timestamp
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.text(`Report generated on: ${new Date().toLocaleString()}`, 20, yPos);
     yPos += 10;
-    
+   
     // Add image if available
     if (uploadedImageData) {
         try {
@@ -1795,18 +1594,18 @@ function generateQuickPDF() {
             doc.setTextColor(0, 0, 0);
             doc.text("Medical Image:", 20, yPos);
             yPos += 7;
-            
+           
             // Calculate image dimensions to fit page (max width 170mm, maintain aspect ratio)
             const img = new Image();
             img.src = uploadedImageData;
-            
+           
             const maxWidth = 170;
             const ratio = maxWidth / img.width;
             const height = img.height * ratio;
-            
+           
             doc.addImage(uploadedImageData, 'JPEG', 20, yPos, maxWidth, height);
             yPos += height + 10;
-            
+           
             // Add page if we're close to the bottom
             if (yPos > doc.internal.pageSize.getHeight() - 50) {
                 doc.addPage();
@@ -1816,88 +1615,84 @@ function generateQuickPDF() {
             console.error('Error adding image to PDF:', e);
         }
     }
-
     // Add analysis results
     doc.setFontSize(14);
     doc.setTextColor(26, 82, 118);
     doc.text("Analysis Results:", 20, yPos);
     yPos += 10;
-    
+   
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    
+   
     // Add primary finding with colored box
     const primaryResult = analysisResults[0];
     doc.setFillColor(26, 82, 118);
     doc.rect(20, yPos, 5, 5, 'F');
     doc.text(`Primary finding: ${primaryResult.label} (${(primaryResult.confidence * 100).toFixed(1)}%)`, 28, yPos + 4);
     yPos += 10;
-    
+   
     // Add differential diagnoses
     doc.text("Differential diagnoses:", 20, yPos);
     yPos += 7;
-    
+   
     analysisResults.slice(1).forEach((result, index) => {
         doc.setFillColor(39, 174, 96);
         doc.rect(25, yPos, 3, 3, 'F');
         doc.text(`${result.label} (${(result.confidence * 100).toFixed(1)}%)`, 30, yPos + 3);
         yPos += 8;
-        
+       
         // Add page if we're close to the bottom
         if (yPos > doc.internal.pageSize.getHeight() - 20) {
             doc.addPage();
             yPos = 20;
         }
     });
-    
+   
     // Add footer
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text("This report was generated automatically by DAS medhub AI system. For medical use only.", 
+    doc.text("This report was generated automatically by DAS medhub AI system. For medical use only.",
         pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: 'center' });
-
     // Save the PDF
     doc.save(`quick_analysis_report_${new Date().toISOString().slice(0,10)}.pdf`);
 }
-
 function generateFullPDF() {
     // Create new PDF document
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     let yPos = 20;
-    
+   
     // Add logo and title
     doc.setFontSize(18);
     doc.setTextColor(26, 82, 118);
     doc.text("DAS medhub - Comprehensive Diagnosis Report", pageWidth / 2, yPos, { align: 'center' });
     yPos += 10;
-    
+   
     doc.setFontSize(12);
     doc.setTextColor(100, 100, 100);
     doc.text("Advanced Multi-Cancer Classification System", pageWidth / 2, yPos, { align: 'center' });
     yPos += 15;
-    
+   
     // Add divider line
     doc.setDrawColor(26, 82, 118);
     doc.setLineWidth(0.5);
     doc.line(20, yPos, pageWidth - 20, yPos);
     yPos += 15;
-
     // Add timestamp
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.text(`Report generated on: ${new Date().toLocaleString()}`, 20, yPos);
     yPos += 10;
-    
+   
     // Add patient information
     doc.setFontSize(14);
     doc.setTextColor(26, 82, 118);
     doc.text("Patient Information:", 20, yPos);
     yPos += 10;
-    
+   
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    
+   
     const patientId = document.getElementById('patient-id').value || 'Not provided';
     const patientName = document.getElementById('patient-name').value || 'Not provided';
     const patientDob = document.getElementById('patient-dob').value || 'Not provided';
@@ -1905,7 +1700,7 @@ function generateFullPDF() {
     const physician = document.getElementById('referring-physician').value || 'Not provided';
     const examDate = document.getElementById('examination-date').value || 'Not provided';
     const clinicalHistory = document.getElementById('clinical-history').value || 'Not provided';
-    
+   
     doc.text(`Patient ID: ${patientId}`, 20, yPos);
     yPos += 7;
     doc.text(`Name: ${patientName}`, 20, yPos);
@@ -1920,13 +1715,13 @@ function generateFullPDF() {
     yPos += 7;
     doc.text(`Clinical History: ${clinicalHistory}`, 20, yPos);
     yPos += 15;
-    
+   
     // Add page if we're close to the bottom
     if (yPos > doc.internal.pageSize.getHeight() - 50) {
         doc.addPage();
         yPos = 20;
     }
-    
+   
     // Add image if available
     if (uploadedImageData) {
         try {
@@ -1935,18 +1730,18 @@ function generateFullPDF() {
             doc.setTextColor(0, 0, 0);
             doc.text("Medical Image:", 20, yPos);
             yPos += 7;
-            
+           
             // Calculate image dimensions to fit page (max width 170mm, maintain aspect ratio)
             const img = new Image();
             img.src = uploadedImageData;
-            
+           
             const maxWidth = 170;
             const ratio = maxWidth / img.width;
             const height = img.height * ratio;
-            
+           
             doc.addImage(uploadedImageData, 'JPEG', 20, yPos, maxWidth, height);
             yPos += height + 10;
-            
+           
             // Add page if we're close to the bottom
             if (yPos > doc.internal.pageSize.getHeight() - 50) {
                 doc.addPage();
@@ -1956,42 +1751,42 @@ function generateFullPDF() {
             console.error('Error adding image to PDF:', e);
         }
     }
-    
+   
     // Add analysis results
     doc.setFontSize(14);
     doc.setTextColor(26, 82, 118);
     doc.text("Analysis Results:", 20, yPos);
     yPos += 10;
-    
+   
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    
+   
     // Add primary finding with colored box
     const primaryResult = analysisResults[0];
     doc.setFillColor(26, 82, 118);
     doc.rect(20, yPos, 5, 5, 'F');
     doc.text(`Primary finding: ${primaryResult.label} (${(primaryResult.confidence * 100).toFixed(1)}%)`, 28, yPos + 4);
     yPos += 10;
-    
+   
     // Add differential diagnoses
     doc.text("Differential diagnoses:", 20, yPos);
     yPos += 7;
-    
+   
     analysisResults.slice(1).forEach((result, index) => {
         doc.setFillColor(39, 174, 96);
         doc.rect(25, yPos, 3, 3, 'F');
         doc.text(`${result.label} (${(result.confidence * 100).toFixed(1)}%)`, 30, yPos + 3);
         yPos += 8;
-        
+       
         // Add page if we're close to the bottom
         if (yPos > doc.internal.pageSize.getHeight() - 20) {
             doc.addPage();
             yPos = 20;
         }
     });
-    
+   
     yPos += 10;
-    
+   
     // Add radiologist notes if available
     const notes = document.getElementById('report-notes').value;
     if (notes) {
@@ -1999,25 +1794,23 @@ function generateFullPDF() {
         doc.setTextColor(26, 82, 118);
         doc.text("Radiologist Notes:", 20, yPos);
         yPos += 10;
-        
+       
         doc.setFontSize(12);
         doc.setTextColor(0, 0, 0);
-        
+       
         const splitNotes = doc.splitTextToSize(notes, pageWidth - 40);
         doc.text(splitNotes, 20, yPos);
         yPos += splitNotes.length * 7;
     }
-    
+   
     // Add footer
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text("This report was generated automatically by DAS medhub AI system. For medical use only.", 
+    doc.text("This report was generated automatically by DAS medhub AI system. For medical use only.",
         pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: 'center' });
-
     // Save the PDF
     doc.save(`diagnosis_report_${patientId || 'anonymous'}_${new Date().toISOString().slice(0,10)}.pdf`);
 }
-
 function resetForm() {
     // Reset form fields
     document.getElementById('image-upload').value = '';
