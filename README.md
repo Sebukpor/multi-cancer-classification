@@ -136,13 +136,13 @@ The model classifies the following cancer types:
 - **oral_scc**: Oral Squamous Cell Carcinoma
 
 
-
+## Full Preprocessed Dataset Link ↪ [Link](https://www.kaggle.com/datasets/maestroalert/cancer)
 ## Demo video ↪ [Link](https://youtu.be/GQ7QS0NIviA?si=IRA5Ncn5bzYd0wdm)
 ## Test link ↪ [Link]([Multi-Cancer Classification - DAS medhub](https://sebukpor.github.io/multi-cancer-classification/))
 
 
 ## License
-This project content cannot be clonned or downloaded without prior notice - see the [LICENSE](LICENSE) file for details.
+This project is lincensed under MIT - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For more information, reach out at:
