@@ -201,7 +201,6 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ## Contact
 
 📧 **Email:** [divinesebukpor@gmail.com](mailto:divinesebukpor@gmail.com)
-👤 *Divine Sebukpor, Founder – DAS medhub*
 
 ---
 
