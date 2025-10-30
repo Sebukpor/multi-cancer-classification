@@ -208,9 +208,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ## Acknowledgements
 
 We thank all dataset providers, research collaborators, and open-source communities that contributed to the datasets, deployment, and web integration.
-
----
-
-### Closing Note
-
-By clearly specifying the **imaging modality** and **dataset source** for each cancer class, users can confidently provide the correct input images — ensuring optimal model accuracy and reliability.
