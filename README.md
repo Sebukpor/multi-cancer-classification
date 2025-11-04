@@ -55,12 +55,23 @@ Users can upload a medical image and receive a predicted cancer type. The infere
 * **Image resizing:** All images scaled to 224 × 224.
 * **Normalization:** Pixel values scaled to [0, 1].
 * **Augmentation:** Rotation, zooming, and horizontal flips.
-* **Training setup:**
 
-  * Optimizer: Adam (lr = 1×10⁻⁴)
-  * Loss: Categorical Cross-Entropy
-  * Batch size: 32
-  * Epochs: 21
+## 🛠️ Training Protocol
+
+| Parameter               | Value                         |
+|------------------------|-------------------------------|
+| Base Model             | Xception (ImageNet weights)   |
+| Input Size             | 224 × 224 × 3                 |
+| Batch Size             | 32                            |
+| Epochs                 | 21                            |
+| Optimizer              | Adam (lr = 1e⁻⁴)              |
+| Loss                   | Categorical Cross-Entropy     |
+| Augmentation           | Rotation (45°), zoom (0.2), horizontal/vertical flip, shift |
+| Regularization         | Dropout (0.1–0.4), L2 weight decay |
+| Fine-tuned Layers      | Last 50 layers of Xception    |
+| Callbacks              | EarlyStopping (patience=10), ReduceLROnPlateau (factor=0.2, patience=5) |
+
+> 💡 The model is **class-balanced**: 4,000 training images per class, 500 validation/test per class.
 
 ---
 
@@ -68,7 +79,7 @@ Users can upload a medical image and receive a predicted cancer type. The infere
 
 | Metric                     | Value   |
 | -------------------------- | ------- |
-| **Top-1 Accuracy**         | 99.73%  |
+| **Top-1 Accuracy**         | 99.85%  |
 | **Top-5 Accuracy**         | 100.00% |
 | **Precision (macro avg.)** | 1.00    |
 | **Recall (macro avg.)**    | 1.00    |
@@ -86,6 +97,18 @@ Users can upload a medical image and receive a predicted cancer type. The infere
 ## 🧫 Classes of Cancer and Imaging Modalities
 
 Each class corresponds to a **specific imaging modality** from a **documented dataset**, ensuring that uploaded images match the model’s expected input type.
+
+---
+| Cancer Type         | Dataset Source (Kaggle/Figshare)                                                                 |
+|---------------------|--------------------------------------------------------------------------------------------------|
+| Brain Tumor         | [Figshare – Cheng (2017)](https://figshare.com/articles/dataset/brain_tumor_dataset/1512427)      |
+| Acute Lymphoblastic Leukemia | [Kaggle – ALL-IDB](https://www.kaggle.com/datasets/mehradaria/leukemia)                   |
+| Breast Cancer       | [BreakHis – Spanhol et al.](https://www.kaggle.com/datasets/anaselmasry/breast-cancer-dataset)   |
+| Cervical Cancer     | [SIPaKMeD – Plissiti et al.](https://www.kaggle.com/datasets/prahladmehandiratta/cervical-cancer-largest-dataset-sipakmed) |
+| Kidney CT           | [CT-Kidney Dataset](https://www.kaggle.com/datasets/nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone) |
+| Lung & Colon        | [LC25000 – Borkowski et al.](https://www.kaggle.com/datasets/biplobdey/lung-and-colon-cancer)    |
+| Lymphoma            | [Malignant Lymphoma](https://www.kaggle.com/datasets/andrewmvd/malignant-lymphoma-classification)|
+| Oral Cancer         | [Oral Histopathology](https://www.kaggle.com/datasets/ashenafifasilkebede/dataset)               |
 
 ---
 
