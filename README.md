@@ -194,10 +194,6 @@ Each class corresponds to a **specific imaging modality** from a **documented da
 
 ---
 
-> ⚠️ **Important:** Always upload the correct modality (e.g., MRI, histopathology, cytology, CT, microscopy).
-> The model is modality-specific — incorrect inputs may lead to unreliable results.
-
----
 
 ## 🧾 Dataset and Resource Links
 
