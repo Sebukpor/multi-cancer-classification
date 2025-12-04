@@ -9,7 +9,9 @@
 
 **Authors:** Divine Sebukpor, Ikenna Odezuligbo*, Maimuna Nagey, Michael Chukwuka, Oluwamayowa Akinsuyi (Corresponding Author)
 
-**Preprint DOI:** [https://www.preprints.org/manuscript/202510.1612](https://www.preprints.org/manuscript/202510.1612)
+**Access Paper :** [here](https://www.mdpi.com/2075-4418/15/23/3066)
+
+* **Test on Web:** [Multi-Cancer Classification – DAS medhub](https://sebukpor.github.io/multi-cancer-classification/)
 
 **Live Demo (Hugging Face Space):** [https://huggingface.co/spaces/Sebukpor/multi-cancer-gradcam](https://huggingface.co/spaces/Sebukpor/multi-cancer-gradcam)
 
