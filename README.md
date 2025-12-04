@@ -197,8 +197,7 @@ Each class corresponds to a **specific imaging modality** from a **documented da
 
 ## 🧾 Dataset and Resource Links
 
-* **Full Preprocessed Dataset:** [https://www.kaggle.com/datasets/maestroalert/cancer](https://www.kaggle.com/datasets/maestroalert/cancer)
-* **Dataset DOI:** [Cancer Classification](https://doi.org/10.34740/kaggle/dsv/9419092)
+* **Full Preprocessed Dataset DOI:** [Cancer Classification](https://doi.org/10.34740/kaggle/dsv/9419092)
 * **Demo Video:** [https://youtu.be/GQ7QS0NIviA?si=IRA5Ncn5bzYd0wdm](https://youtu.be/GQ7QS0NIviA?si=IRA5Ncn5bzYd0wdm)
 * **Test on Web:** [Multi-Cancer Classification – DAS medhub](https://sebukpor.github.io/multi-cancer-classification/)
 
